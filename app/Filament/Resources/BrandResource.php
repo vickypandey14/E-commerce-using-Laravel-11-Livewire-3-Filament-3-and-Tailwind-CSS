@@ -36,7 +36,7 @@ class BrandResource extends Resource
                                 ->required()
                                 ->maxLength(255)
                                 ->live(onBlur:true)
-                                ->afterStateUpdated(fn (String $operation, $state, $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
+                                ->afterStateUpdated(fn (string $operation, $state, $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
 
                             TextInput::make('slug')
                                 ->required()
@@ -48,7 +48,7 @@ class BrandResource extends Resource
 
                         FileUpload::make('image')
                             ->image()
-                            ->directory('categories'),
+                            ->directory('brands'),
 
                         Toggle::make('is_active')
                             ->required()
@@ -71,7 +71,7 @@ class BrandResource extends Resource
 
                 // Tables\Columns\IconColumn::make('is_active')
                 //     ->boolean(),
-                
+
                 Tables\Columns\ToggleColumn::make('is_active'),
 
                 Tables\Columns\TextColumn::make('created_at')

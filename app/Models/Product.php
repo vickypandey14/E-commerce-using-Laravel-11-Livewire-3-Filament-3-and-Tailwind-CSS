@@ -20,10 +20,14 @@ class Product extends Model
         'description',
         'short_description',
         'price',
+        'sku',
         'is_active',
         'is_featured',
         'in_stock',
         'on_sale',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
     ];
 
     /**
