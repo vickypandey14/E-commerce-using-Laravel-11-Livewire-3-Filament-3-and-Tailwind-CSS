@@ -17,6 +17,8 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
@@ -34,14 +36,14 @@ class ProductResource extends Resource
             ->schema([
                 Group::make()->schema([
                     Section::make('Product Information')->schema([
-                        
+
                         TextInput::make('name')
                             ->label('Product Name')
                             ->required()
                             ->maxLength(255)
                             ->live(onBlur: true)
                             ->afterStateUpdated(function (string $state, $operation, $set) {
-                                if ($operation == 'create') {
+                                if ($operation !== 'create') {
                                     return;
                                 }
                                 $set('slug', Str::slug($state));
@@ -50,7 +52,9 @@ class ProductResource extends Resource
                         TextInput::make('slug')
                             ->required()
                             ->maxLength(255)
-                            ->disabled(),
+                            ->disabled()
+                            ->dehydrated()
+                            ->unique(Product::class, 'slug', ignoreRecord: true),
 
                         MarkdownEditor::make('description')
                             ->columnSpanFull()
@@ -142,41 +146,66 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('category_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('brand_id')
-                    ->numeric()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('price')
-                    ->money()
+
+                Tables\Columns\TextColumn::make('category.name')
                     ->sortable(),
+
+                Tables\Columns\TextColumn::make('brand.name')
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('price')
+                    ->money('INR')
+                    ->sortable(),
+
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),
+
                 Tables\Columns\IconColumn::make('is_featured')
                     ->boolean(),
+
                 Tables\Columns\IconColumn::make('in_stock')
                     ->boolean(),
+
                 Tables\Columns\IconColumn::make('on_sale')
                     ->boolean(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('category')
+                    ->relationship('category', 'name'),
+
+                SelectFilter::make('brand')
+                    ->relationship('brand', 'name'),
+
+                Filter::make('is_featured')
+                    ->toggle(),
+
+                Filter::make('in_stock')
+                    ->toggle(),
+
+                Filter::make('on_sale')
+                    ->toggle(),
+
+                Filter::make('is_active')
+                    ->toggle()
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make()->requiresConfirmation(),
+                ])
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
