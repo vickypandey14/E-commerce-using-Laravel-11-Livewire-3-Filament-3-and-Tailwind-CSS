@@ -23,7 +23,7 @@ Route::get('/categories', CategoriesPage::class)->name('product-categories');
 
 Route::get('/products', ProductsPage::class)->name('all-products');
 
-Route::get('/product/{product}', ProductDetailPage::class)->name('product-details');
+Route::get('/product/{slug}', ProductDetailPage::class)->name('product-details');
 
 Route::get('/cart', CartPage::class)->name('cart-products');
 

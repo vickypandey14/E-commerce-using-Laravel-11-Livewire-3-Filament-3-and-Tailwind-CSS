@@ -7,30 +7,18 @@
               <h2 class="text-2xl font-bold dark:text-gray-400"> Categories</h2>
               <div class="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400"></div>
               <ul>
-                <li class="mb-4">
-                  <label for="" class="flex items-center dark:text-gray-400 ">
-                    <input type="checkbox" class="w-4 h-4 mr-2">
-                    <span class="text-lg">Smartphones</span>
-                  </label>
-                </li>
-                <li class="mb-4">
-                  <label for="" class="flex items-center dark:text-gray-400 ">
-                    <input type="checkbox" class="w-4 h-4 mr-2 ">
-                    <span class="text-lg">Laptops</span>
-                  </label>
-                </li>
-                <li class="mb-4">
-                  <label for="" class="flex items-center dark:text-gray-400">
-                    <input type="checkbox" class="w-4 h-4 mr-2">
-                    <span class="text-lg">Smartwatches</span>
-                  </label>
-                </li>
-                <li class="mb-4">
-                  <label for="" class="flex items-center dark:text-gray-400">
-                    <input type="checkbox" class="w-4 h-4 mr-2">
-                    <span class="text-lg">Television</span>
-                  </label>
-                </li>
+
+                @foreach ($categories as $category)
+                
+                  <li class="mb-4" wire:key="{{ $category->id }}">
+                    <label for="{{ $category->slug }}" class="flex items-center dark:text-gray-400 ">
+                      <input type="checkbox" id="{{ $category->slug }}" value="{{ $category->id }}" class="w-4 h-4 mr-2">
+                      <span class="text-lg">{{ $category->name }}</span>
+                    </label>
+                  </li> 
+
+                @endforeach 
+
               </ul>
   
             </div>
@@ -38,30 +26,18 @@
               <h2 class="text-2xl font-bold dark:text-gray-400">Brand</h2>
               <div class="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400"></div>
               <ul>
-                <li class="mb-4">
-                  <label for="" class="flex items-center dark:text-gray-300">
-                    <input type="checkbox" class="w-4 h-4 mr-2">
-                    <span class="text-lg dark:text-gray-400">Apple</span>
-                  </label>
-                </li>
-                <li class="mb-4">
-                  <label for="" class="flex items-center dark:text-gray-300">
-                    <input type="checkbox" class="w-4 h-4 mr-2">
-                    <span class="text-lg dark:text-gray-400">Samsung</span>
-                  </label>
-                </li>
-                <li class="mb-4">
-                  <label for="" class="flex items-center dark:text-gray-300">
-                    <input type="checkbox" class="w-4 h-4 mr-2">
-                    <span class="text-lg dark:text-gray-400">Nothing</span>
-                  </label>
-                </li>
-                <li class="mb-4">
-                  <label for="" class="flex items-center dark:text-gray-300">
-                    <input type="checkbox" class="w-4 h-4 mr-2">
-                    <span class="text-lg dark:text-gray-400">One Plus</span>
-                  </label>
-                </li>
+
+                @foreach ($brands as $brand)
+                
+                  <li class="mb-4" wire:key="{{ $brand->id }}">
+                    <label for="{{ $brand->slug }}" class="flex items-center dark:text-gray-300">
+                      <input type="checkbox" value="{{ $brand->id }}" id="{{ $brand->slug }}" class="w-4 h-4 mr-2">
+                      <span class="text-lg dark:text-gray-400">{{ $brand->name }}</span>
+                    </label>
+                  </li>
+
+                @endforeach
+
               </ul>
             </div>
             <div class="p-4 mb-5 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-900">
@@ -108,202 +84,43 @@
             </div>
             <div class="flex flex-wrap items-center ">
   
-              <div class="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                <div class="border border-gray-300 dark:border-gray-700">
-                  <div class="relative bg-gray-200">
-                    <a href="/products/product_one" class="">
-                      <img src="https://i.postimg.cc/hj6h6Vwv/pexels-artem-beliaikin-2292919.jpg" alt="" class="object-cover w-full h-56 mx-auto ">
-                    </a>
-                  </div>
-                  <div class="p-3 ">
-                    <div class="flex items-center justify-between gap-2 mb-2">
-                      <h3 class="text-xl font-medium dark:text-gray-400">
-                        Product name
-                      </h3>
+              @foreach ($products as $product)
+              
+                <div class="w-full px-3 mb-6 sm:w-1/2 md:w-1/3" wire:key="{{ $product->id }}">
+                  <div class="border border-gray-300 dark:border-gray-700">
+                    <div class="relative bg-gray-200">
+                      <a wire:navigate href="{{ route('product-details', $product->slug) }}" class="">
+                        <img src="{{ url('storage', $product->images[0]) }}" alt="{{ $product->name }}" class="object-cover w-full h-56 mx-auto ">
+                      </a>
                     </div>
-                    <p class="text-lg ">
-                      <span class="text-green-600 dark:text-green-600">$800.00</span>
-                    </p>
-                  </div>
-                  <div class="flex justify-center p-4 border-t border-gray-300 dark:border-gray-700">
-  
-                    <a href="#" class="text-gray-500 flex items-center space-x-2 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-300">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-4 h-4 bi bi-cart3 " viewBox="0 0 16 16">
-                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-                      </svg><span>Add to Cart</span>
-                    </a>
-  
+                    <div class="p-3">
+                      <div class="flex items-center justify-between gap-2 mb-2">
+                        <h3 class="text-xl font-medium dark:text-gray-400">
+                          {{ $product->name }}
+                        </h3>
+                      </div>
+                      <p class="text-lg">
+                        <span class="text-green-600 dark:text-green-600">{{ Number::currency($product->price, 'INR') }}</span>
+                      </p>
+                    </div>
+                    <div class="flex justify-center p-4 border-t border-gray-300 dark:border-gray-700">
+    
+                      <a href="#" class="text-gray-500 flex items-center space-x-2 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-4 h-4 bi bi-cart3 " viewBox="0 0 16 16">
+                          <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+                        </svg><span>Add to Cart</span>
+                      </a>
+    
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                <div class="border border-gray-300 dark:border-gray-700">
-                  <div class="relative bg-gray-200">
-                    <a href="#" class="">
-                      <img src="https://i.postimg.cc/hj6h6Vwv/pexels-artem-beliaikin-2292919.jpg" alt="" class="object-cover w-full h-56 mx-auto ">
-                    </a>
-                  </div>
-                  <div class="p-3 ">
-                    <div class="flex items-center justify-between gap-2 mb-2">
-                      <h3 class="text-xl font-medium dark:text-gray-400">
-                        Product name
-                      </h3>
-                    </div>
-                    <p class="text-lg ">
-                      <span class="text-green-600 dark:text-green-600">$800.00</span>
-                    </p>
-                  </div>
-                  <div class="flex justify-center p-4 border-t border-gray-300 dark:border-gray-700">
-  
-                    <a href="#" class="text-gray-500 flex items-center space-x-2 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-300">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-4 h-4 bi bi-cart3 " viewBox="0 0 16 16">
-                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-                      </svg><span>Add to Cart</span>
-                    </a>
-  
-                  </div>
-                </div>
-              </div>
-              <div class="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                <div class="border border-gray-300 dark:border-gray-700">
-                  <div class="relative bg-gray-200">
-                    <a href="#" class="">
-                      <img src="https://i.postimg.cc/hj6h6Vwv/pexels-artem-beliaikin-2292919.jpg" alt="" class="object-cover w-full h-56 mx-auto ">
-                    </a>
-                  </div>
-                  <div class="p-3 ">
-                    <div class="flex items-center justify-between gap-2 mb-2">
-                      <h3 class="text-xl font-medium dark:text-gray-400">
-                        Product name
-                      </h3>
-                    </div>
-                    <p class="text-lg ">
-                      <span class="text-green-600 dark:text-green-600">$800.00</span>
-                    </p>
-                  </div>
-                  <div class="flex justify-center p-4 border-t border-gray-300 dark:border-gray-700">
-  
-                    <a href="#" class="text-gray-500 flex items-center space-x-2 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-300">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-4 h-4 bi bi-cart3 " viewBox="0 0 16 16">
-                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-                      </svg><span>Add to Cart</span>
-                    </a>
-  
-                  </div>
-                </div>
-              </div>
-              <div class="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                <div class="border border-gray-300 dark:border-gray-700">
-                  <div class="relative bg-gray-200">
-                    <a href="#" class="">
-                      <img src="https://i.postimg.cc/hj6h6Vwv/pexels-artem-beliaikin-2292919.jpg" alt="" class="object-cover w-full h-56 mx-auto ">
-                    </a>
-                  </div>
-                  <div class="p-3 ">
-                    <div class="flex items-center justify-between gap-2 mb-2">
-                      <h3 class="text-xl font-medium dark:text-gray-400">
-                        Product name
-                      </h3>
-                    </div>
-                    <p class="text-lg ">
-                      <span class="text-green-600 dark:text-green-600">$800.00</span>
-                    </p>
-                  </div>
-                  <div class="flex justify-center p-4 border-t border-gray-300 dark:border-gray-700">
-  
-                    <a href="#" class="text-gray-500 flex items-center space-x-2 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-300">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-4 h-4 bi bi-cart3 " viewBox="0 0 16 16">
-                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-                      </svg><span>Add to Cart</span>
-                    </a>
-  
-                  </div>
-                </div>
-              </div>
-              <div class="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                <div class="border border-gray-300 dark:border-gray-700">
-                  <div class="relative bg-gray-200">
-                    <a href="#" class="">
-                      <img src="https://i.postimg.cc/hj6h6Vwv/pexels-artem-beliaikin-2292919.jpg" alt="" class="object-cover w-full h-56 mx-auto ">
-                    </a>
-                  </div>
-                  <div class="p-3 ">
-                    <div class="flex items-center justify-between gap-2 mb-2">
-                      <h3 class="text-xl font-medium dark:text-gray-400">
-                        Product name
-                      </h3>
-                    </div>
-                    <p class="text-lg ">
-                      <span class="text-green-600 dark:text-green-600">$800.00</span>
-                    </p>
-                  </div>
-                  <div class="flex justify-center p-4 border-t border-gray-300 dark:border-gray-700">
-  
-                    <a href="#" class="text-gray-500 flex items-center space-x-2 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-300">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-4 h-4 bi bi-cart3 " viewBox="0 0 16 16">
-                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-                      </svg><span>Add to Cart</span>
-                    </a>
-  
-                  </div>
-                </div>
-              </div>
-              <div class="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
-                <div class="border border-gray-300 dark:border-gray-700">
-                  <div class="relative bg-gray-200">
-                    <a href="#" class="">
-                      <img src="https://i.postimg.cc/hj6h6Vwv/pexels-artem-beliaikin-2292919.jpg" alt="" class="object-cover w-full h-56 mx-auto ">
-                    </a>
-                  </div>
-                  <div class="p-3 ">
-                    <div class="flex items-center justify-between gap-2 mb-2">
-                      <h3 class="text-xl font-medium dark:text-gray-400">
-                        Product name
-                      </h3>
-                    </div>
-                    <p class="text-lg ">
-                      <span class="text-green-600 dark:text-green-600">$800.00</span>
-                    </p>
-                  </div>
-                  <div class="flex justify-center p-4 border-t border-gray-300 dark:border-gray-700">
-  
-                    <a href="#" class="text-gray-500 flex items-center space-x-2 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-300">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-4 h-4 bi bi-cart3 " viewBox="0 0 16 16">
-                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-                      </svg><span>Add to Cart</span>
-                    </a>
-  
-                  </div>
-                </div>
-              </div>
+
+              @endforeach
   
             </div>
             <!-- pagination start -->
             <div class="flex justify-end mt-6">
-              <nav aria-label="page-navigation">
-                <ul class="flex list-style-none">
-                  <li class="page-item disabled ">
-                    <a href="#" class="relative block pointer-events-none px-3 py-1.5 mr-3 text-base text-gray-700 transition-all duration-300  rounded-md dark:text-gray-400 hover:text-gray-100 hover:bg-blue-600">Previous
-                    </a>
-                  </li>
-                  <li class="page-item ">
-                    <a href="#" class="relative block px-3 py-1.5 mr-3 text-base hover:text-blue-700 transition-all duration-300 hover:bg-blue-200 dark:hover:text-gray-400 dark:hover:bg-gray-700 rounded-md text-gray-100 bg-blue-400">1
-                    </a>
-                  </li>
-                  <li class="page-item ">
-                    <a href="#" class="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-blue-100 rounded-md mr-3  ">2
-                    </a>
-                  </li>
-                  <li class="page-item ">
-                    <a href="#" class="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-blue-100 rounded-md mr-3 ">3
-                    </a>
-                  </li>
-                  <li class="page-item ">
-                    <a href="#" class="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-blue-100 rounded-md ">Next
-                    </a>
-                  </li>
-                </ul>
-              </nav>
+              {{ $products->links() }}
             </div>
             <!-- pagination end -->
           </div>
