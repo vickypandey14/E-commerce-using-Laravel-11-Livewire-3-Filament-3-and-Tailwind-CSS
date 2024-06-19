@@ -12,7 +12,7 @@
                 
                   <li class="mb-4" wire:key="{{ $category->id }}">
                     <label for="{{ $category->slug }}" class="flex items-center dark:text-gray-400 ">
-                      <input type="checkbox" id="{{ $category->slug }}" value="{{ $category->id }}" class="w-4 h-4 mr-2">
+                      <input type="checkbox" wire:model.live="selected_categories" id="{{ $category->slug }}" value="{{ $category->id }}" class="w-4 h-4 mr-2">
                       <span class="text-lg">{{ $category->name }}</span>
                     </label>
                   </li> 
