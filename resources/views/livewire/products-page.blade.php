@@ -66,14 +66,17 @@
               <h2 class="text-2xl font-bold dark:text-gray-400">Price</h2>
               <div class="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400"></div>
               <div>
-                <input type="range" class="w-full h-1 mb-4 bg-blue-100 rounded appearance-none cursor-pointer" max="500000" value="100000" step="100000">
-                <div class="flex justify-between ">
-                  <span class="inline-block text-lg font-bold text-blue-400 ">&#8377; 1000</span>
-                  <span class="inline-block text-lg font-bold text-blue-400 ">&#8377; 500000</span>
+                <div class="font-semibold">{{ Number::currency($price_range, 'INR') }}</div>
+                <input type="range" wire:model.live="price_range" class="w-full h-1 mb-4 bg-blue-100 rounded appearance-none cursor-pointer" max="500000" value="0" step="1000">
+                <div class="flex justify-between">
+                  <span class="inline-block text-lg font-bold text-blue-400 ">{{ Number::currency(1000, 'INR') }}</span>
+                  <span class="inline-block text-lg font-bold text-blue-400 ">{{ Number::currency(500000, 'INR') }}</span>
                 </div>
               </div>
             </div>
+
           </div>
+
           <div class="w-full px-3 lg:w-3/4">
             <div class="px-3 mb-4">
               <div class="items-center justify-between hidden px-3 py-2 bg-gray-100 md:flex dark:bg-gray-900 ">
