@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Helpers\CartManagement;
+use App\Livewire\Partials\Navbar;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
@@ -11,6 +13,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 
 #[Title('Products - ByteWebster')]
+
 class ProductsPage extends Component
 {
     use WithPagination;
@@ -32,6 +35,16 @@ class ProductsPage extends Component
 
     #[Url]
     public $sort = 'latest';
+
+    // Method for adding the product in the cart
+
+    public function addToCart($product_id)
+    {
+        $total_count = CartManagement::addItemToCart($product_id);
+
+        $this->dispatch('update-cart-count', total_count: $total_count)->to(Navbar::class);
+        
+    }
 
     public function render()
     {
