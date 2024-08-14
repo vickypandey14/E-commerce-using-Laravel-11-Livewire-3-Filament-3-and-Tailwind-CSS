@@ -34,6 +34,8 @@ Route::get('/my-orders', MyOrdersPage::class)->name('my-orders');
 Route::get('/my-orders/{order}', MyOrderDetailPage::class)->name('my-order-details');
 
 
+// Auth routes
+
 Route::get('/login', LoginPage::class)->name('login');
 
 Route::get('/register', RegisterPage::class)->name('register');
