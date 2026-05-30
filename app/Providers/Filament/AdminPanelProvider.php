@@ -28,6 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->profile(\App\Filament\Pages\Auth\EditProfile::class)
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -39,7 +40,7 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 OrderStats::class,
-                Widgets\AccountWidget::class,
+                \App\Filament\Widgets\CustomAccountWidget::class,
                 // Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
