@@ -2,6 +2,14 @@
 
 ![Laravel](https://img.shields.io/badge/Laravel-11-red?style=flat-square&logo=laravel) ![Livewire](https://img.shields.io/badge/Livewire-3-blue?style=flat-square&logo=laravel) ![Filament](https://img.shields.io/badge/Filament-3-green?style=flat-square&logo=filament) ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v3-06B6D4?style=flat-square&logo=tailwind-css)
 
+---
+
+### Admin Dashboard Preview
+
+![Admin Dashboard](public/screenshots/admin-dashboard.png)
+
+---
+
 ## About the Project
 
 This repository showcases a **modern e-commerce application** built with the latest web technologies:
