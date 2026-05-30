@@ -18,21 +18,81 @@ This repository showcases a **modern e-commerce application** built with the lat
 - **Powerful Admin Panel**: With Filament 3, managing the store's content, orders, and products is seamless.
 - **Responsive Design**: Tailwind CSS ensures the application looks great on all screen sizes.
 
+---
 
-## AI Roadmap
+## Accessing the Dashboard & Frontend
 
-The project aims to explore practical AI integrations within modern Laravel e-commerce applications. Planned AI-powered features include:
+This project has two separate routing surfaces for users and administrators:
 
-* AI-generated product descriptions
-* Intelligent product categorization
-* Semantic product search
-* AI shopping assistant for customer support
-* Product recommendation engine
-* Automated SEO title and meta description generation
-* AI-assisted content moderation for product listings
+| Page | URL | Description |
+| --- | --- | --- |
+| **Frontend Home** | `http://127.0.0.1:8000/` | Main customer landing page |
+| **Frontend Login** | `http://127.0.0.1:8000/login` | For customers to log in and access order history (redirects to home `/` upon success) |
+| **Admin Dashboard (Backend)** | `http://127.0.0.1:8000/admin` | Filament admin dashboard to manage products, categories, orders, etc. |
 
-These features will be implemented using OpenAI APIs and documented as open-source examples to help Laravel developers learn how to integrate AI into production-ready applications.
+### Default Login Credentials (Seeded Data)
 
+The database seeding generates a default user and administrator account that can be used to log in:
+
+* **Email:** `test@example.com`
+* **Password:** `password`
+
+---
+
+## Getting Started
+
+Follow these instructions to set up and run the project locally.
+
+### Prerequisites
+
+Ensure you have the following installed:
+
+- PHP >= 8.2
+- Composer
+- Node.js >= 16
+- NPM or Yarn
+- MySQL (or SQLite)
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/vickypandey14/E-commerce-using-Laravel-11-Livewire-3-Filament-3-and-Tailwind-CSS.git
+   cd E-commerce-using-Laravel-11-Livewire-3-Filament-3-and-Tailwind-CSS
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   composer install
+   npm install
+   ```
+
+3. **Set up the `.env` file:**
+   ```bash
+   cp .env.example .env
+   ```
+   *Note: Open the `.env` file and configure your database settings (e.g. `DB_CONNECTION`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`).*
+
+4. **Generate the application key:**
+   ```bash
+   php artisan key:generate
+   ```
+
+5. **Run migrations and seed the database:**
+   ```bash
+   # Generates all ecommerce tables and populates them with sample users, products, categories, and orders
+   php artisan migrate:fresh --seed
+   ```
+
+6. **Build frontend assets:**
+   ```bash
+   npm run dev
+   ```
+
+7. **Start the development server:**
+   ```bash
+   php artisan serve
+   ```
 
 ---
 
@@ -53,77 +113,28 @@ The following pages have been developed using **Livewire 3**:
 
 ---
 
-## Getting Started
+## AI Roadmap
 
-Follow these instructions to set up and run the project locally.
+The project aims to explore practical AI integrations within modern Laravel e-commerce applications. Planned AI-powered features include:
 
-### Prerequisites
+* AI-generated product descriptions
+* Intelligent product categorization
+* Semantic product search
+* AI shopping assistant for customer support
+* Product recommendation engine
+* Automated SEO title and meta description generation
+* AI-assisted content moderation for product listings
 
-Ensure you have the following installed:
+These features will be implemented using OpenAI APIs and documented as open-source examples to help Laravel developers learn how to integrate AI into production-ready applications.
 
-- PHP >= 8.2
-- Composer
-- Node.js >= 16
-- NPM or Yarn
-- MySQL
+---
 
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/vickypandey14/E-commerce-using-Laravel-11-Livewire-3-Filament-3-and-Tailwind-CSS.git
-   cd E-commerce-using-Laravel-11-Livewire-3-Filament-3-and-Tailwind-CSS
-   ```
-
-2. Install dependencies:
-   ```bash
-   composer install
-   npm install
-   ```
-
-3. Set up the `.env` file:
-   ```bash
-   cp .env.example .env
-   ```
-   Update the database credentials and other environment variables as needed.
-
-4. Generate the application key:
-   ```bash
-   php artisan key:generate
-   ```
-
-5. Run migrations and seed the database:
-   ```bash
-   php artisan migrate --seed
-   ```
-
-6. Build frontend assets:
-   ```bash
-   npm run dev
-   ```
-
-7. Start the development server:
-   ```bash
-   php artisan serve
-   ```
-
-### Testing
+## Testing
 
 Run the following command to execute tests:
 ```bash
 php artisan test
 ```
-
----
-
-## Roadmap
-
-### Planned Features:
-- Add a user authentication system.
-- Build an advanced search and filtering functionality.
-- Enhance the admin panel with analytics and reporting tools.
-- Implement payment gateway integration.
-- Add dynamic inventory and stock management.
 
 ---
 
@@ -150,5 +161,5 @@ This project is open-source and licensed under the [MIT License](LICENSE).
 For any questions or feedback, feel free to reach out:
 
 - **Vivek Chandra Pandey**  
-  GitHub: [vickypandey14](https://github.com/vickypandey14)
+  GitHub: [vickypandey14](https://github.com/vickypandey14)  
   Website: [bytewebster.com](https://bytewebster.com)
