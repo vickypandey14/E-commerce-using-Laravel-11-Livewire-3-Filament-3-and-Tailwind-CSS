@@ -1,6 +1,7 @@
 @php
-    $mainImage = !empty($product->images) && isset($product->images[0]) 
-        ? url('storage', $product->images[0]) 
+    $firstImage = !empty($product->images) && isset($product->images[0]) ? $product->images[0] : null;
+    $mainImage = $firstImage
+        ? ((str_starts_with($firstImage, 'http://') || str_starts_with($firstImage, 'https://')) ? $firstImage : url('storage/' . $firstImage))
         : 'https://placehold.co/600x600/6366f1/ffffff?text=' . urlencode($product->name);
 @endphp
 
@@ -22,8 +23,11 @@
                 @if(!empty($product->images) && count($product->images) > 1)
                     <div class="flex flex-wrap gap-3">
                         @foreach ($product->images as $image)
-                            <button x-on:click="mainImage = '{{ url('storage', $image) }}'" class="w-20 h-20 bg-slate-50 dark:bg-slate-950/20 border hover:border-blue-600 dark:border-slate-800 rounded-xl overflow-hidden p-1 transition">
-                                <img src="{{ url('storage', $image) }}" alt="{{ $product->name }}" class="object-contain w-full h-full">
+                            @php
+                                $thumbUrl = (str_starts_with($image, 'http://') || str_starts_with($image, 'https://')) ? $image : url('storage/' . $image);
+                            @endphp
+                            <button x-on:click="mainImage = '{{ $thumbUrl }}'" class="w-20 h-20 bg-slate-50 dark:bg-slate-950/20 border hover:border-blue-600 dark:border-slate-800 rounded-xl overflow-hidden p-1 transition">
+                                <img src="{{ $thumbUrl }}" alt="{{ $product->name }}" class="object-contain w-full h-full">
                             </button>
                         @endforeach
                     </div>
