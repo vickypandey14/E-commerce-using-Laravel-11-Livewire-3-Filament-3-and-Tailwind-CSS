@@ -28,7 +28,10 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->profile(\App\Filament\Pages\Auth\EditProfile::class)
+            ->userMenuItems([
+                'profile' => \Filament\Navigation\UserMenuItem::make()
+                    ->url(fn (): string => \App\Filament\Pages\EditProfile::getUrl()),
+            ])
             ->colors([
                 'primary' => Color::Amber,
             ])
