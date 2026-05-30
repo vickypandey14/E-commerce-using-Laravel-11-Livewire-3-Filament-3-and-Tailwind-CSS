@@ -15,17 +15,17 @@ class OrderStatsOverview extends BaseWidget
 
     protected function getStats(): array
     {
-        $totalSales = Order::where('payment_status', 'paid')->sum('grand_total');
-        $ordersCount = Order::count();
-        $productsCount = Product::where('is_active', 1)->count();
-        $customersCount = User::count();
+        $totalSales = cache()->remember('stats_total_sales', 120, fn() => Order::where('payment_status', 'paid')->sum('grand_total'));
+        $ordersCount = cache()->remember('stats_orders_count', 120, fn() => Order::count());
+        $productsCount = cache()->remember('stats_products_count', 120, fn() => Product::where('is_active', 1)->count());
+        $customersCount = cache()->remember('stats_customers_count', 120, fn() => User::count());
 
         // Weekly sales trend chart mock data points
-        $salesTrend = Order::where('payment_status', 'paid')
+        $salesTrend = cache()->remember('stats_sales_trend', 120, fn() => Order::where('payment_status', 'paid')
             ->latest()
             ->take(10)
             ->pluck('grand_total')
-            ->toArray();
+            ->toArray());
 
         return [
             Stat::make('Total Revenue', Number::currency($totalSales, 'INR'))

@@ -82,6 +82,11 @@ class WishlistResource extends Resource
         ];
     }
 
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->with(['user', 'product']);
+    }
+
     public static function getPages(): array
     {
         return [

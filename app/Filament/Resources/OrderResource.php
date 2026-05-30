@@ -338,6 +338,11 @@ class OrderResource extends Resource
         ];
     }
 
+    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        return parent::getEloquentQuery()->with(['user']);
+    }
+
     public static function getNavigationBadge() : ?string {
         return static::getModel()::count();
     }
