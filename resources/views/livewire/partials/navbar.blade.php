@@ -94,7 +94,7 @@
                         </div>
                         <div class="absolute inset-y-0 right-0 flex items-center pr-1.5 gap-1">
                             <div class="inline-flex items-center gap-1 py-1 px-2 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-[9px] shadow-sm select-none">
-                                <span>⚡ AI Search</span>
+                                <span>AI Search</span>
                             </div>
                         </div>
                     </div>
@@ -174,7 +174,7 @@
                 @endauth
                 
                 <!-- Mobile Toggle button -->
-                <button type="button" class="hs-collapse-toggle flex justify-center items-center w-9 h-9 text-sm font-semibold rounded-xl border border-slate-200 text-slate-850 hover:bg-slate-50 dark:text-white dark:border-slate-800 dark:hover:bg-slate-900 transition md:hidden" data-hs-collapse="#navbar-collapse" aria-controls="navbar-collapse" aria-label="Toggle navigation">
+                <button type="button" class="hs-collapse-toggle flex justify-center items-center w-9 h-9 text-sm font-semibold rounded-xl border border-slate-200 text-slate-850 hover:bg-slate-50 dark:text-white dark:border-slate-800 dark:hover:bg-slate-900 transition lg:hidden" data-hs-collapse="#navbar-collapse" aria-controls="navbar-collapse" aria-label="Toggle navigation">
                     <svg class="hs-collapse-open:hidden w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <line x1="3" x2="21" y1="6" y2="6" />
                         <line x1="3" x2="21" y1="12" y2="12" />
