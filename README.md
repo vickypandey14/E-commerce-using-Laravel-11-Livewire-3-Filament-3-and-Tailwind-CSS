@@ -150,6 +150,12 @@ Contributions are welcome! Please follow these steps:
 
 ---
 
+## Acknowledgements
+
+Special thanks to [FilamentPHP](https://filamentphp.com/) for building and maintaining an incredibly elegant, developer-friendly, and powerful administration framework that drives the backend operations of this e-commerce platform.
+
+---
+
 ## License
 
 This project is open-source and licensed under the [MIT License](LICENSE).
