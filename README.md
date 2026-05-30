@@ -18,6 +18,22 @@ This repository showcases a **modern e-commerce application** built with the lat
 - **Powerful Admin Panel**: With Filament 3, managing the store's content, orders, and products is seamless.
 - **Responsive Design**: Tailwind CSS ensures the application looks great on all screen sizes.
 
+
+## AI Roadmap
+
+The project aims to explore practical AI integrations within modern Laravel e-commerce applications. Planned AI-powered features include:
+
+* AI-generated product descriptions
+* Intelligent product categorization
+* Semantic product search
+* AI shopping assistant for customer support
+* Product recommendation engine
+* Automated SEO title and meta description generation
+* AI-assisted content moderation for product listings
+
+These features will be implemented using OpenAI APIs and documented as open-source examples to help Laravel developers learn how to integrate AI into production-ready applications.
+
+
 ---
 
 ## Pages Completed (Frontend)
