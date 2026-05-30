@@ -48,6 +48,7 @@ class OrderStatsOverview extends BaseWidget
             Stat::make('Registered Customers', $customersCount)
                 ->description('Registered user accounts')
                 ->descriptionIcon('heroicon-m-users')
+                ->chart([5, 10, 15, 12, 18, 22, 28])
                 ->color('success'),
         ];
     }

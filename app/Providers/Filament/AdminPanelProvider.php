@@ -28,8 +28,13 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->brandName('BW E-commerce')
             ->userMenuItems([
                 'profile' => \Filament\Navigation\UserMenuItem::make()
+                    ->url(fn (): string => \App\Filament\Pages\EditProfile::getUrl()),
+                'change_password' => \Filament\Navigation\UserMenuItem::make()
+                    ->label('Change Password')
+                    ->icon('heroicon-o-key')
                     ->url(fn (): string => \App\Filament\Pages\EditProfile::getUrl()),
             ])
             ->colors([
