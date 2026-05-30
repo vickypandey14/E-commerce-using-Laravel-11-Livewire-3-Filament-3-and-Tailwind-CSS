@@ -135,6 +135,14 @@ class CheckoutPage extends Component
                 'unit_amount' => $item['unit_amount'],
                 'total_amount' => $item['total_amount'],
             ]);
+
+            // Log stock reduction in inventory logs
+            \App\Models\InventoryLog::create([
+                'product_id' => $item['product_id'],
+                'user_id' => auth()->id(),
+                'quantity_change' => -$item['quantity'],
+                'reason' => 'Customer Purchase (Order #' . $order->id . ')',
+            ]);
         }
 
         // Create address

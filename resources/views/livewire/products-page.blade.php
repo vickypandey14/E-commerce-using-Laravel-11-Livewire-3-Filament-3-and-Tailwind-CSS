@@ -1,4 +1,28 @@
 <div class="w-full max-w-[85rem] py-12 px-4 sm:px-6 lg:px-8 mx-auto">
+    <!-- Breadcrumb -->
+    <nav class="flex mb-6 text-xs text-gray-500 dark:text-slate-400 font-medium" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-2">
+            <li class="inline-flex items-center">
+                <a href="/" class="inline-flex items-center hover:text-blue-600 dark:hover:text-blue-500">
+                    <i class="bi bi-house-door-fill mr-1.5 text-sm"></i>
+                    Home
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <i class="bi bi-chevron-right mx-1 text-gray-400 dark:text-slate-650 text-[10px]"></i>
+                    <span class="text-gray-800 dark:text-white font-semibold">Products</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Header Block -->
+    <div class="mb-10 text-left">
+        <h1 class="text-3xl font-extrabold tracking-tight text-gray-800 dark:text-white sm:text-4xl">All Products</h1>
+        <p class="text-sm text-gray-500 dark:text-slate-400 mt-2">Explore our extensive range of high-quality electronics, accessories, and tech items. Use filters to narrow down your preferences.</p>
+    </div>
+
     <div class="flex flex-col lg:flex-row gap-8">
         <!-- Filter Sidebar -->
         <div class="w-full lg:w-1/4 space-y-6">

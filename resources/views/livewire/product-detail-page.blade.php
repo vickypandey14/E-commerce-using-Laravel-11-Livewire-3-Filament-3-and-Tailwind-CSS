@@ -6,6 +6,38 @@
 @endphp
 
 <div class="w-full max-w-[85rem] py-12 px-4 sm:px-6 lg:px-8 mx-auto" x-data="{ mainImage: '{{ $mainImage }}' }">
+    <!-- Breadcrumb -->
+    <nav class="flex mb-6 text-xs text-gray-500 dark:text-slate-400 font-medium" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-2">
+            <li class="inline-flex items-center">
+                <a href="/" class="inline-flex items-center hover:text-blue-600 dark:hover:text-blue-500">
+                    <i class="bi bi-house-door-fill mr-1.5 text-sm"></i>
+                    Home
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <i class="bi bi-chevron-right mx-1 text-gray-400 dark:text-slate-650 text-[10px]"></i>
+                    <a href="/products" class="hover:text-blue-600 dark:hover:text-blue-500">Products</a>
+                </div>
+            </li>
+            @if($product->category)
+            <li>
+                <div class="flex items-center">
+                    <i class="bi bi-chevron-right mx-1 text-gray-400 dark:text-slate-650 text-[10px]"></i>
+                    <a href="/products?selected_categories[0]={{ $product->category->id }}" class="hover:text-blue-600 dark:hover:text-blue-500">{{ $product->category->name }}</a>
+                </div>
+            </li>
+            @endif
+            <li>
+                <div class="flex items-center">
+                    <i class="bi bi-chevron-right mx-1 text-gray-400 dark:text-slate-650 text-[10px]"></i>
+                    <span class="text-gray-800 dark:text-white font-semibold truncate max-w-[150px]">{{ $product->name }}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
     <div class="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/80 rounded-3xl p-6 sm:p-10 shadow-sm">
         <div class="flex flex-col lg:flex-row gap-12">
             <!-- Left: Product Images -->

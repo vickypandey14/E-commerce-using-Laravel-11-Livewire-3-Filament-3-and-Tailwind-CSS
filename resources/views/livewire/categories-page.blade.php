@@ -1,12 +1,30 @@
 <div class="w-full max-w-[85rem] py-12 px-4 sm:px-6 lg:px-8 mx-auto">
+    <!-- Breadcrumb -->
+    <nav class="flex mb-6 text-xs text-gray-500 dark:text-slate-400 font-medium" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-2">
+            <li class="inline-flex items-center">
+                <a href="/" class="inline-flex items-center hover:text-blue-600 dark:hover:text-blue-500">
+                    <i class="bi bi-house-door-fill mr-1.5 text-sm"></i>
+                    Home
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <i class="bi bi-chevron-right mx-1 text-gray-400 dark:text-slate-650 text-[10px]"></i>
+                    <span class="text-gray-800 dark:text-white font-semibold">Categories</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
     <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
         <span class="text-xs text-blue-600 dark:text-blue-400 font-bold uppercase tracking-widest">Collections</span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-800 dark:text-white tracking-tight">
-            All Categories
+            Explore Product Categories
         </h2>
         <div class="w-16 h-1 bg-blue-600 mx-auto rounded"></div>
         <p class="text-gray-500 dark:text-slate-400 text-sm">
-            Browse our full catalog of categories. Select any category to view its products.
+            Discover our curated collections of top-brand electronics, high-fidelity audio equipment, smartphones, and smart home gadgets tailored for you.
         </p>
     </div>
 

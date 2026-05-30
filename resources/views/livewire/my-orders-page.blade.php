@@ -1,4 +1,22 @@
 <div class="w-full max-w-[85rem] py-12 px-4 sm:px-6 lg:px-8 mx-auto text-left">
+    <!-- Breadcrumb -->
+    <nav class="flex mb-6 text-xs text-gray-500 dark:text-slate-400 font-medium" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-2">
+            <li class="inline-flex items-center">
+                <a href="/" class="inline-flex items-center hover:text-blue-600 dark:hover:text-blue-500">
+                    <i class="bi bi-house-door-fill mr-1.5 text-sm"></i>
+                    Home
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <i class="bi bi-chevron-right mx-1 text-gray-400 dark:text-slate-650 text-[10px]"></i>
+                    <span class="text-gray-800 dark:text-white font-semibold">My Orders</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
     <div class="max-w-2xl mx-auto mb-10">
         <h1 class="text-3xl font-extrabold tracking-tight text-gray-800 dark:text-white sm:text-4xl">My Orders</h1>
         <p class="text-sm text-gray-500 dark:text-slate-400 mt-2">Track your past purchases and current orders.</p>
@@ -6,7 +24,7 @@
 
     @if($orders->isEmpty())
         <div class="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/80 rounded-3xl p-16 text-center shadow-sm max-w-3xl mx-auto">
-            <span class="text-6xl">📦</span>
+            <i class="bi bi-box-seam text-6xl text-slate-350 block mb-4"></i>
             <h3 class="text-xl font-bold text-gray-800 dark:text-gray-200 mt-6">No Orders Placed Yet</h3>
             <p class="text-gray-500 dark:text-slate-400 text-sm mt-2 max-w-sm mx-auto">You haven't ordered anything yet. When you place an order, it will appear here.</p>
             <div class="mt-8">

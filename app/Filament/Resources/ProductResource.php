@@ -216,6 +216,7 @@ class ProductResource extends Resource
     {
         return [
             RelationManagers\FaqsRelationManager::class,
+            RelationManagers\InventoryLogsRelationManager::class,
         ];
     }
 

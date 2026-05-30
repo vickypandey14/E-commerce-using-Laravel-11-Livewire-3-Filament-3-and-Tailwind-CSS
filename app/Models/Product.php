@@ -112,4 +112,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductFaq::class);
     }
+
+    public function inventoryLogs()
+    {
+        return $this->hasMany(InventoryLog::class);
+    }
 }
