@@ -30,21 +30,21 @@
                                 <h4 class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest px-2 mb-2">Departments</h4>
                                 <div class="space-y-1">
                                     <a wire:navigate href="/products?selected_categories[0]=1" class="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition">
-                                        <span class="text-lg">📱</span>
+                                        <i class="bi bi-smartphone text-lg text-blue-600"></i>
                                         <div>
                                             <p class="text-xs font-bold text-slate-850 dark:text-white">Smartphones</p>
                                             <p class="text-[10px] text-slate-500">iOS & Android</p>
                                         </div>
                                     </a>
                                     <a wire:navigate href="/products?selected_categories[0]=2" class="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition">
-                                        <span class="text-lg">💻</span>
+                                        <i class="bi bi-laptop text-lg text-blue-600"></i>
                                         <div>
                                             <p class="text-xs font-bold text-slate-850 dark:text-white">Laptops & PCs</p>
                                             <p class="text-[10px] text-slate-500">Macbooks & Windows</p>
                                         </div>
                                     </a>
                                     <a wire:navigate href="/products?selected_categories[0]=3" class="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition">
-                                        <span class="text-lg">🎧</span>
+                                        <i class="bi bi-headphones text-lg text-blue-600"></i>
                                         <div>
                                             <p class="text-xs font-bold text-slate-850 dark:text-white">Audio & Sound</p>
                                             <p class="text-[10px] text-slate-500">Noise Canceling</p>
@@ -56,14 +56,14 @@
                                 <h4 class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest px-2 mb-2">Wearables & TV</h4>
                                 <div class="space-y-1">
                                     <a wire:navigate href="/products?selected_categories[0]=4" class="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition">
-                                        <span class="text-lg">⌚</span>
+                                        <i class="bi bi-watch text-lg text-blue-600"></i>
                                         <div>
                                             <p class="text-xs font-bold text-slate-850 dark:text-white">Smartwatches</p>
                                             <p class="text-[10px] text-slate-500">Fitness & LTE</p>
                                         </div>
                                     </a>
                                     <a wire:navigate href="/products?selected_categories[0]=5" class="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition">
-                                        <span class="text-lg">📺</span>
+                                        <i class="bi bi-tv text-lg text-blue-600"></i>
                                         <div>
                                             <p class="text-xs font-bold text-slate-850 dark:text-white">Televisions</p>
                                             <p class="text-[10px] text-slate-500">4K OLED & Smart TV</p>

@@ -92,7 +92,7 @@
             <!-- Products Grid -->
             @if($products->isEmpty())
                 <div class="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/80 rounded-2xl p-16 text-center shadow-sm">
-                    <span class="text-5xl">🔍</span>
+                    <i class="bi bi-search text-5xl text-slate-350 block mb-4"></i>
                     <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200 mt-4">No Products Found</h3>
                     <p class="text-gray-500 dark:text-slate-400 text-sm mt-1">Try updating your filters or search criteria.</p>
                 </div>

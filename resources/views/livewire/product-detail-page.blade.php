@@ -36,7 +36,7 @@
                 <!-- Shipping Feature List -->
                 <div class="pt-6 border-t border-gray-100 dark:border-slate-800/85">
                     <div class="flex items-center space-x-3 text-sm text-gray-600 dark:text-slate-400">
-                        <span class="text-xl">🚚</span>
+                        <i class="bi bi-truck text-xl text-blue-600"></i>
                         <div>
                             <span class="font-bold text-gray-800 dark:text-white">Free Express Shipping</span>
                             <p class="text-xs text-gray-400 mt-0.5">Estimated delivery: 3 - 5 business days.</p>

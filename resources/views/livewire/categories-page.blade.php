@@ -20,7 +20,7 @@
                                 @if($category->image)
                                     <img class="h-10 w-10 object-contain rounded-lg" src="{{ $category->getImageUrl() }}" alt="{{ $category->name }}">
                                 @else
-                                    <span class="text-2xl">📦</span>
+                                    <i class="bi bi-box-seam text-2xl text-blue-600 group-hover:text-white transition duration-300"></i>
                                 @endif
                             </div>
                             <div>

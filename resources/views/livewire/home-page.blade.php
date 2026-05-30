@@ -134,8 +134,8 @@
                 <!-- Promo 1: Laptops Category Link -->
                 <a href="/products?selected_categories[0]=2" class="group relative overflow-hidden bg-gradient-to-br from-blue-600 to-indigo-700 text-white rounded-3xl p-6 flex flex-col justify-between h-[132px] sm:h-[150px] lg:h-[162px] shadow-sm hover:shadow-md transition">
                     <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl group-hover:scale-125 transition duration-500"></div>
-                    <div class="absolute right-4 bottom-4 w-16 h-16 opacity-20 group-hover:opacity-30 group-hover:scale-110 transition duration-300 text-5xl shrink-0 select-none">
-                        💻
+                    <div class="absolute right-4 bottom-4 w-16 h-16 opacity-20 group-hover:opacity-30 group-hover:scale-110 transition duration-300 text-5xl shrink-0 select-none flex items-center justify-center">
+                        <i class="bi bi-laptop text-5xl"></i>
                     </div>
                     <div class="z-10 text-left space-y-1">
                         <span class="inline-flex px-2 py-0.5 rounded bg-white/20 text-white text-[9px] font-bold uppercase tracking-wider">Computers & Laptops</span>
@@ -148,8 +148,8 @@
                 <!-- Promo 2: Smartwatches Category Link -->
                 <a href="/products?selected_categories[0]=4" class="group relative overflow-hidden bg-gradient-to-br from-rose-500 to-orange-600 text-white rounded-3xl p-6 flex flex-col justify-between h-[132px] sm:h-[150px] lg:h-[162px] shadow-sm hover:shadow-md transition">
                     <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl group-hover:scale-125 transition duration-500"></div>
-                    <div class="absolute right-4 bottom-4 w-16 h-16 opacity-20 group-hover:opacity-30 group-hover:scale-110 transition duration-300 text-5xl shrink-0 select-none">
-                        ⌚
+                    <div class="absolute right-4 bottom-4 w-16 h-16 opacity-20 group-hover:opacity-30 group-hover:scale-110 transition duration-300 text-5xl shrink-0 select-none flex items-center justify-center">
+                        <i class="bi bi-watch text-5xl"></i>
                     </div>
                     <div class="z-10 text-left space-y-1">
                         <span class="inline-flex px-2 py-0.5 rounded bg-white/20 text-white text-[9px] font-bold uppercase tracking-wider">Fitness & Wearables</span>
@@ -202,7 +202,7 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10">
                 <div class="space-y-1 text-left">
                     <span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-lg bg-red-50 text-red-600 border border-red-100 font-bold text-xs">
-                        ⚡ Limited Period Flash Sale Offers
+                        <i class="bi bi-lightning-charge-fill"></i> Limited Period Flash Sale Offers
                     </span>
                     <h2 class="text-2xl sm:text-3xl font-black tracking-tight text-slate-950">
                         Top Flash Sale Products

@@ -7,7 +7,7 @@
     @if(empty($cart_items))
         <!-- Empty Cart State -->
         <div class="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/80 rounded-3xl p-16 text-center shadow-sm max-w-3xl mx-auto">
-            <span class="text-6xl">🛒</span>
+            <i class="bi bi-cart text-6xl text-slate-300 block mb-4"></i>
             <h3 class="text-xl font-bold text-gray-800 dark:text-gray-200 mt-6">Your Cart is Empty</h3>
             <p class="text-gray-500 dark:text-slate-400 text-sm mt-2 max-w-sm mx-auto">Looks like you haven't added any products to your cart yet. Let's find some gadgets!</p>
             <div class="mt-8">
