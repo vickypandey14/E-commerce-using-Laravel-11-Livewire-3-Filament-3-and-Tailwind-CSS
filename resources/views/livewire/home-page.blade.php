@@ -132,11 +132,7 @@
                 @foreach ($categories as $category)
                     <a wire:navigate href="/products?selected_categories[0]={{ $category->id }}" class="group flex flex-col bg-white border border-gray-100 rounded-2xl p-5 hover:shadow-xl hover:shadow-blue-500/5 transition hover-lift text-center" wire:key="category-{{ $category->id }}">
                         <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-600 group-hover:text-white transition duration-300 shadow-sm">
-                            @if($category->image)
-                                <img class="h-10 w-10 object-contain rounded-lg" src="{{ url('storage', $category->image) }}" alt="{{ $category->name }}">
-                            @else
-                                <span class="text-2xl">📦</span>
-                            @endif
+                            <img class="h-10 w-10 object-contain rounded-lg" src="{{ $category->getImageUrl() }}" alt="{{ $category->name }}">
                         </div>
                         <h3 class="font-bold text-slate-800 group-hover:text-blue-600 transition text-sm">
                             {{ $category->name }}
@@ -165,11 +161,7 @@
                 @foreach ($brands as $brand)
                     <a wire:navigate href="/products?selected_brands[0]={{ $brand->id }}" class="group flex flex-col bg-slate-50 border border-gray-100 rounded-2xl p-5 hover:shadow-xl hover:shadow-blue-500/5 transition hover-lift text-center" wire:key="brand-{{ $brand->id }}">
                         <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-600 group-hover:text-white transition duration-300 shadow-sm border border-gray-100">
-                            @if($brand->image)
-                                <img class="h-10 w-10 object-contain rounded-full" src="{{ url('storage', $brand->image) }}" alt="{{ $brand->name }}">
-                            @else
-                                <span class="text-sm font-extrabold uppercase text-gray-500 group-hover:text-white">{{ substr($brand->name, 0, 2) }}</span>
-                            @endif
+                            <img class="h-10 w-10 object-contain rounded-full" src="{{ $brand->getImageUrl() }}" alt="{{ $brand->name }}">
                         </div>
                         <h3 class="font-bold text-slate-800 group-hover:text-blue-600 transition text-sm">
                             {{ $brand->name }}

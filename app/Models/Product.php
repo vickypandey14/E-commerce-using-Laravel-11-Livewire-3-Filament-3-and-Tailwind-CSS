@@ -49,6 +49,21 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function getImageUrl()
+    {
+        if (empty($this->images) || !isset($this->images[0])) {
+            return 'https://placehold.co/600x600/3b82f6/ffffff?text=' . urlencode($this->name);
+        }
+        
+        $firstImage = $this->images[0];
+        
+        if (str_starts_with($firstImage, 'http://') || str_starts_with($firstImage, 'https://')) {
+            return $firstImage;
+        }
+        
+        return url('storage/' . $firstImage);
+    }
+
     /**
      * Get the brand that owns the product.
      */

@@ -103,11 +103,7 @@
                             <!-- Image Display -->
                             <div class="relative bg-slate-50 dark:bg-slate-950/20 aspect-video sm:aspect-square overflow-hidden flex items-center justify-center">
                                 <a wire:navigate href="{{ route('product-details', $product->slug) }}" class="w-full h-full flex items-center justify-center">
-                                    @if(!empty($product->images) && isset($product->images[0]))
-                                        <img src="{{ url('storage', $product->images[0]) }}" alt="{{ $product->name }}" class="object-contain w-full h-full p-4 transform group-hover:scale-105 transition duration-300">
-                                    @else
-                                        <img src="https://placehold.co/600x600/6366f1/ffffff?text={{ urlencode($product->name) }}" alt="{{ $product->name }}" class="object-contain w-full h-full p-4 transform group-hover:scale-105 transition duration-300">
-                                    @endif
+                                    <img src="{{ $product->getImageUrl() }}" alt="{{ $product->name }}" class="object-contain w-full h-full p-4 transform group-hover:scale-105 transition duration-300">
                                 </a>
 
                                 <!-- On Sale Badge -->

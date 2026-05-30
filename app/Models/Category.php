@@ -24,6 +24,19 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
+    public function getImageUrl()
+    {
+        if (empty($this->image)) {
+            return 'https://placehold.co/400x400/3b82f6/ffffff?text=' . urlencode($this->name);
+        }
+        
+        if (str_starts_with($this->image, 'http://') || str_starts_with($this->image, 'https://')) {
+            return $this->image;
+        }
+        
+        return url('storage/' . $this->image);
+    }
+
     public static function boot()
     {
         parent::boot();
