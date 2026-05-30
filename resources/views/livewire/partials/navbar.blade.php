@@ -4,8 +4,8 @@
             <!-- Logo -->
             <a wire:navigate class="flex items-center gap-2.5 text-2xl font-black tracking-tight text-slate-900 dark:text-white shrink-0" href="/">
                 <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/25">
-                    <svg class="w-5.5 h-5.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"></path>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"></path>
                     </svg>
                 </div>
                 <span class="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-850 dark:from-white dark:to-slate-200 bg-clip-text text-transparent font-extrabold">Byte<span class="text-blue-600 dark:text-blue-400">Webster</span></span>
@@ -105,7 +105,7 @@
             <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
                 <!-- Notifications Bell -->
                 <button type="button" class="relative p-2.5 text-slate-650 hover:text-blue-600 dark:text-slate-350 dark:hover:text-blue-400 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900 transition">
-                    <svg class="w-5.5 h-5.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a9.049 9.049 0 01-5.185-2.813 9.049 9.049 0 01-2.813-5.185M9 17h6m-3-11V3m0 0l-3 3m3-3l3 3M4 10a8 8 0 1116 0c0 4.135 3 6 3 6H1s3-1.865 3-6z" />
                     </svg>
                     <span class="absolute top-2 right-2 flex h-2 w-2">
@@ -116,10 +116,10 @@
 
                 <!-- Cart Icon Desktop -->
                 <a wire:navigate class="relative p-2.5 text-slate-650 hover:text-blue-600 dark:text-slate-350 dark:hover:text-blue-400 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900 transition" href="{{ route('cart-products') }}">
-                    <svg class="w-5.5 h-5.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.119-1.243l1.263-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"></path>
                     </svg>
-                    <span class="absolute top-1 right-1 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-blue-600 text-[9px] font-bold text-white ring-2 ring-white dark:ring-slate-950">{{ $total_count }}</span>
+                    <span class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-[9px] font-bold text-white ring-2 ring-white dark:ring-slate-950">{{ $total_count }}</span>
                 </a>
 
                 <!-- User Profile / Auth Actions -->
@@ -145,7 +145,7 @@
 
                         <div class="hs-dropdown-menu transition-[opacity,margin] duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 md:w-52 hidden z-50 bg-white dark:bg-slate-900 md:shadow-2xl rounded-2xl p-2 border border-slate-100 dark:border-slate-800 before:absolute top-full before:-top-5 before:start-0 before:w-full before:h-5 mt-2">
                             <a class="flex items-center gap-x-3 py-2.5 px-3.5 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-350 hover:bg-slate-50 dark:hover:bg-slate-800 transition" href="{{ route('my-orders') }}">
-                                <svg class="w-4.5 h-4.5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                                 </svg>
                                 My Orders
@@ -153,7 +153,7 @@
                             
                             @if(auth()->user()->email === 'test@example.com' || (method_exists(auth()->user(), 'isAdmin') && auth()->user()->isAdmin()))
                             <a class="flex items-center gap-x-3 py-2.5 px-3.5 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-350 hover:bg-slate-50 dark:hover:bg-slate-800 transition" href="/admin">
-                                <svg class="w-4.5 h-4.5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                 </svg>
@@ -164,7 +164,7 @@
                             <hr class="my-1.5 border-slate-100 dark:border-slate-800">
 
                             <button type="button" wire:click="logout" class="flex w-full items-center gap-x-3 py-2.5 px-3.5 rounded-xl text-xs font-semibold text-red-650 hover:bg-red-50 dark:hover:bg-red-950/20 transition">
-                                <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"></path>
                                 </svg>
                                 Logout

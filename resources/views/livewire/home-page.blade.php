@@ -173,7 +173,7 @@
                     <h4 class="font-extrabold text-slate-900 text-base">Apple Store</h4>
                     <p class="text-xs text-slate-500">Explore iPhones & Laptops</p>
                 </div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" class="h-8 w-8 object-contain opacity-70 group-hover:opacity-100 transition duration-300" alt="Apple">
+                <img src="https://logo.clearbit.com/apple.com" class="h-8 w-8 object-contain opacity-70 group-hover:opacity-100 transition duration-300 rounded-md" alt="Apple">
             </a>
             <!-- Promo 2: Sony Brand Spotlight -->
             <a href="/products?selected_brands[0]=3" class="group flex items-center justify-between p-6 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition">
@@ -182,7 +182,7 @@
                     <h4 class="font-extrabold text-slate-900 text-base">Sony Series</h4>
                     <p class="text-xs text-slate-500">Noise-canceling headsets</p>
                 </div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Sony_logo.svg" class="h-8 w-8 object-contain opacity-70 group-hover:opacity-100 transition duration-300" alt="Sony">
+                <img src="https://logo.clearbit.com/sony.com" class="h-8 w-8 object-contain opacity-70 group-hover:opacity-100 transition duration-300 rounded-md" alt="Sony">
             </a>
             <!-- Promo 3: Samsung Brand Spotlight -->
             <a href="/products?selected_brands[0]=2" class="group flex items-center justify-between p-6 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition">
@@ -191,7 +191,7 @@
                     <h4 class="font-extrabold text-slate-900 text-base">Samsung Galaxy</h4>
                     <p class="text-xs text-slate-500">Android Flagships & LTE Watch</p>
                 </div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" class="h-8 w-8 object-contain opacity-70 group-hover:opacity-100 transition duration-300" alt="Samsung">
+                <img src="https://logo.clearbit.com/samsung.com" class="h-8 w-8 object-contain opacity-70 group-hover:opacity-100 transition duration-300 rounded-md" alt="Samsung">
             </a>
         </div>
     </div>
@@ -252,66 +252,83 @@
             <!-- Flash Sale Products Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($flash_deals as $product)
-                    <div class="bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between" wire:key="deal-{{ $product->id }}">
+                    <div class="group bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between" wire:key="deal-{{ $product->id }}">
                         
-                        <!-- Clickable Image Product Details link -->
-                        <a wire:navigate href="{{ route('product-details', $product->slug) }}" class="relative aspect-[4/3] bg-white p-4 flex items-center justify-center border-b border-slate-150 group">
-                            <img src="{{ $product->getImageUrl() }}" alt="{{ $product->name }}" class="max-h-full object-contain transition duration-500 group-hover:scale-105">
-                            <span class="absolute top-3 left-3 bg-red-600 text-white font-bold text-[9px] uppercase tracking-wider px-2.5 py-0.5 rounded-lg shadow">
-                                -15% Off
-                            </span>
-                        </a>
+                        <!-- Image Area -->
+                        <div class="relative aspect-[4/3] bg-slate-50/50 p-6 flex items-center justify-center overflow-hidden border-b border-slate-100">
+                            <!-- Discount Badge -->
+                            <div class="absolute top-4 left-4 z-10">
+                                <span class="inline-flex items-center gap-1 py-1 px-2.5 rounded-full bg-red-500 text-white font-extrabold text-[10px] uppercase tracking-wider shadow-sm">
+                                    15% OFF
+                                </span>
+                            </div>
+                            
+                            <!-- Image (Clickable & Zoom on Hover) -->
+                            <a wire:navigate href="{{ route('product-details', $product->slug) }}" class="w-full h-full flex items-center justify-center">
+                                <img src="{{ $product->getImageUrl() }}" alt="{{ $product->name }}" class="max-h-full object-contain transform group-hover:scale-105 transition-transform duration-500 ease-out select-none">
+                            </a>
+                        </div>
 
-                        <!-- Card details -->
-                        <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
-                            <div class="space-y-1.5 text-left">
-                                <span class="text-[9px] text-blue-600 font-extrabold uppercase tracking-widest">{{ $product->brand->name ?? 'Brand' }}</span>
-                                <a wire:navigate href="{{ route('product-details', $product->slug) }}" class="block font-bold text-slate-900 hover:text-blue-600 transition text-sm sm:text-base leading-snug line-clamp-2">
+                        <!-- Details Container -->
+                        <div class="p-5 flex-1 flex flex-col justify-between space-y-4 text-left">
+                            <div class="space-y-2">
+                                <!-- Brand & Stars Row -->
+                                <div class="flex items-center justify-between text-[10px]">
+                                    <span class="font-extrabold text-blue-600 uppercase tracking-widest">{{ $product->brand->name ?? 'Brand' }}</span>
+                                    <div class="flex items-center gap-1 bg-amber-50 text-amber-700 font-bold px-2 py-0.5 rounded-md border border-amber-100">
+                                        <span>★</span>
+                                        <span>{{ number_format(4.5 + ($product->id % 5) / 10, 1) }}</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Title -->
+                                <a wire:navigate href="{{ route('product-details', $product->slug) }}" class="block font-bold text-slate-850 hover:text-blue-600 transition text-sm sm:text-base leading-snug line-clamp-2">
                                     {{ $product->name }}
                                 </a>
                                 
-                                <!-- Star Rating Mock -->
-                                <div class="flex items-center gap-1 text-[10px] text-amber-500 font-semibold mt-1">
-                                    <span>★★★★★</span>
-                                    <span class="text-slate-400 text-[9px]">({{ (($product->id * 7) % 60) + 12 }} Reviews)</span>
-                                </div>
+                                <span class="inline-block text-[10px] text-slate-400 font-medium">Official global version model</span>
                             </div>
 
-                            <!-- Inventory stock bar (Dynamic values based on product ID) -->
-                            <div class="space-y-1 text-left">
+                            <!-- Inventory Progress Bar Widget -->
+                            <div class="space-y-1.5 bg-slate-50 p-3 rounded-xl border border-slate-100">
                                 <div class="flex justify-between text-[10px] font-bold">
-                                    <span class="text-slate-400">Stock Status</span>
-                                    <span class="text-red-500">Only {{ ($product->id % 6) + 2 }} units left</span>
+                                    <span class="text-slate-400">Stock Available</span>
+                                    <span class="text-red-500">Only {{ ($product->id % 6) + 2 }} left in stock!</span>
                                 </div>
                                 <div class="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
-                                    <div class="h-full bg-red-500 rounded-full" style="width: {{ (($product->id % 6) + 2) * 12 }}%"></div>
+                                    <div class="h-full bg-gradient-to-r from-red-500 to-orange-500 rounded-full" style="width: {{ (($product->id % 6) + 2) * 12 }}%"></div>
                                 </div>
                             </div>
 
-                            <!-- Pricing -->
-                            <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
-                                <div class="space-y-0.5 text-left">
-                                    <p class="text-[10px] text-slate-400 line-through">
-                                        {{ Number::currency($product->price * 1.15, 'INR') }}
-                                    </p>
-                                    <p class="text-base font-black text-slate-900 leading-none">
-                                        {{ Number::currency($product->price, 'INR') }}
-                                    </p>
+                            <!-- Pricing & Button Row -->
+                            <div class="pt-4 border-t border-slate-150 flex items-center justify-between gap-4">
+                                <div class="space-y-0.5">
+                                    <span class="block text-[9px] text-slate-400 uppercase tracking-widest font-bold">Sale Price</span>
+                                    <div class="flex items-baseline gap-1.5">
+                                        <p class="text-lg font-black text-slate-905 leading-none">
+                                            {{ Number::currency($product->price, 'INR') }}
+                                        </p>
+                                        <p class="text-[10px] text-slate-400 line-through">
+                                            {{ Number::currency($product->price * 1.15, 'INR') }}
+                                        </p>
+                                    </div>
                                 </div>
                                 
+                                <!-- Add to Cart -->
                                 <button wire:click.prevent="addToCart({{ $product->id }})" class="py-2.5 px-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl transition shadow-sm flex items-center gap-1.5 text-xs font-bold whitespace-nowrap">
-                                    <svg wire:loading.remove wire:target="addToCart({{ $product->id }})" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <svg wire:loading.remove wire:target="addToCart({{ $product->id }})" class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.119-1.243l1.263-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"></path>
                                     </svg>
                                     <!-- Loading Spinner -->
-                                    <svg wire:loading wire:target="addToCart({{ $product->id }})" class="animate-spin w-4 h-4 text-white" fill="none" viewBox="0 0 24 24">
+                                    <svg wire:loading wire:target="addToCart({{ $product->id }})" class="animate-spin w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                     </svg>
-                                    <span wire:loading.remove wire:target="addToCart({{ $product->id }})">Add to Cart</span>
-                                    <span wire:loading wire:target="addToCart({{ $product->id }})">Adding...</span>
+                                    <span wire:loading.remove wire:target="addToCart({{ $product->id }})">Add</span>
+                                    <span wire:loading wire:target="addToCart({{ $product->id }})">...</span>
                                 </button>
                             </div>
+
                         </div>
                     </div>
                 @endforeach

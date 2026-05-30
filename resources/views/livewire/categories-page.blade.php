@@ -18,7 +18,7 @@
                         <div class="flex items-center space-x-4">
                             <div class="w-16 h-16 bg-blue-50 dark:bg-slate-800 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition duration-300 shadow">
                                 @if($category->image)
-                                    <img class="h-10 w-10 object-contain rounded-lg" src="{{ url('storage', $category->image) }}" alt="{{ $category->name }}">
+                                    <img class="h-10 w-10 object-contain rounded-lg" src="{{ $category->getImageUrl() }}" alt="{{ $category->name }}">
                                 @else
                                     <span class="text-2xl">📦</span>
                                 @endif
