@@ -114,6 +114,16 @@
                     </span>
                 </button>
 
+                <!-- Wishlist Icon Desktop -->
+                <a wire:navigate class="relative p-2.5 text-slate-650 hover:text-red-500 dark:text-slate-350 dark:hover:text-red-400 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900 transition" href="/wishlist" title="Wishlist">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path>
+                    </svg>
+                    @if($wishlist_count > 0)
+                        <span class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[9px] font-bold text-white ring-2 ring-white dark:ring-slate-950">{{ $wishlist_count }}</span>
+                    @endif
+                </a>
+
                 <!-- Cart Icon Desktop -->
                 <a wire:navigate class="relative p-2.5 text-slate-650 hover:text-blue-600 dark:text-slate-350 dark:hover:text-blue-400 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900 transition" href="{{ route('cart-products') }}">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">

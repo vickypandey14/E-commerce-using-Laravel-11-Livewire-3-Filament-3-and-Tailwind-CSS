@@ -106,6 +106,45 @@ class ProductDetailPage extends Component
         ]);
     }
 
+    public function toggleWishlist()
+    {
+        if (!auth()->check()) {
+            $this->alert('info', 'Please log in to add items to your wishlist.', [
+                'position' => 'top-end',
+                'timer' => 3000,
+                'toast' => true,
+            ]);
+            return;
+        }
+
+        $existing = \App\Models\Wishlist::where('user_id', auth()->id())
+            ->where('product_id', $this->product->id)
+            ->first();
+
+        if ($existing) {
+            $existing->delete();
+            $this->dispatch('update-wishlist-count');
+            $this->alert('success', 'Removed from wishlist.', [
+                'position' => 'top-end',
+                'timer' => 3000,
+                'toast' => true,
+            ]);
+        } else {
+            \App\Models\Wishlist::create([
+                'user_id' => auth()->id(),
+                'product_id' => $this->product->id,
+            ]);
+            $this->dispatch('update-wishlist-count');
+            $this->alert('success', 'Added to wishlist!', [
+                'position' => 'top-end',
+                'timer' => 3000,
+                'toast' => true,
+            ]);
+        }
+
+        $this->product->load('wishlists');
+    }
+
     public function render()
     {
         return view('livewire.product-detail-page', ['product' => $this->product])

@@ -96,4 +96,15 @@ class Product extends Model
     {
         return round($this->approvedReviews()->avg('rating') ?? 0, 1);
     }
+
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+
+    public function isWishlistedByUser($userId)
+    {
+        if (!$userId) return false;
+        return $this->wishlists()->where('user_id', $userId)->exists();
+    }
 }

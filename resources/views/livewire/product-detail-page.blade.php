@@ -130,9 +130,9 @@
                             </div>
                         </div>
 
-                        <div class="flex-1 pt-6">
+                        <div class="flex-1 pt-6 flex items-center gap-2">
                             @if($product->in_stock)
-                                <button type="button" wire:click="addToCart({{ $product->id }})" class="w-full py-3 px-6 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-xl border border-transparent bg-blue-600 text-white hover:bg-blue-700 shadow-md shadow-blue-500/10 hover:shadow-blue-500/20 transition hover-lift">
+                                <button type="button" wire:click="addToCart({{ $product->id }})" class="flex-1 py-3 px-6 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-xl border border-transparent bg-blue-600 text-white hover:bg-blue-700 shadow-md shadow-blue-500/10 hover:shadow-blue-500/20 transition hover-lift">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.119-1.243l1.263-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"></path>
                                     </svg>
@@ -140,10 +140,21 @@
                                     <span wire:loading wire:target="addToCart({{ $product->id }})">Adding...</span>
                                 </button>
                             @else
-                                <button type="button" disabled class="w-full py-3 px-6 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-xl border border-transparent bg-gray-200 text-gray-500 cursor-not-allowed dark:bg-slate-800 dark:text-slate-500">
+                                <button type="button" disabled class="flex-1 py-3 px-6 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-xl border border-transparent bg-gray-200 text-gray-500 cursor-not-allowed dark:bg-slate-800 dark:text-slate-500">
                                     Out of Stock
                                 </button>
                             @endif
+
+                            @php
+                                $isWishlisted = auth()->check() ? $product->isWishlistedByUser(auth()->id()) : false;
+                            @endphp
+                            <button type="button" wire:click="toggleWishlist" class="p-3 bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-700/60 transition shadow-sm" title="Add to Wishlist">
+                                @if($isWishlisted)
+                                    <i class="bi bi-heart-fill text-red-500 text-lg"></i>
+                                @else
+                                    <i class="bi bi-heart text-gray-500 dark:text-slate-400 text-lg"></i>
+                                @endif
+                            </button>
                         </div>
                     </div>
                 </div>

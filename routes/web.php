@@ -29,6 +29,8 @@ Route::get('/cart', CartPage::class)->name('cart-products');
 
 Route::get('/checkout', CheckoutPage::class)->name('checkout');
 
+Route::get('/wishlist', \App\Livewire\WishlistPage::class)->name('wishlist');
+
 Route::get('/my-orders', MyOrdersPage::class)->name('my-orders');
 
 Route::get('/my-orders/{order}', MyOrderDetailPage::class)->name('my-order-details');

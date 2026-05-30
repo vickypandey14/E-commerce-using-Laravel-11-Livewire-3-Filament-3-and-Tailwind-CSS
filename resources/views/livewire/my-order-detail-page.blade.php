@@ -4,6 +4,69 @@
         <p class="text-sm text-gray-500 dark:text-slate-400 mt-2">Detailed summary of Order #{{ $order->id }}.</p>
     </div>
 
+    @if($order->status === 'cancelled')
+        <div class="bg-red-50 dark:bg-red-950/20 text-red-700 dark:text-red-400 p-5 rounded-3xl border border-red-200/50 mb-8 flex items-center gap-3">
+            <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <div>
+                <h4 class="font-bold text-sm">Order Cancelled</h4>
+                <p class="text-xs mt-0.5">This order has been cancelled and cannot be processed further.</p>
+            </div>
+        </div>
+    @else
+        <!-- Order Tracking Stepper -->
+        <div class="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/80 rounded-3xl p-6 sm:p-8 shadow-sm mb-8">
+            <h3 class="text-xs font-bold text-gray-400 dark:text-slate-500 uppercase tracking-wider mb-6">Order Tracking</h3>
+            
+            <div class="relative flex flex-col md:flex-row justify-between items-center gap-6 md:gap-2">
+                <!-- Line Connector -->
+                <div class="absolute left-5 top-5 bottom-5 md:left-0 md:right-0 md:top-1/2 md:bottom-auto w-0.5 md:w-full h-full md:h-1 bg-gray-100 dark:bg-slate-800 -translate-y-1/2 md:translate-y-0 z-0"></div>
+                
+                @php
+                    $steps = [
+                        'new' => ['label' => 'Order Placed', 'icon' => 'bi-receipt'],
+                        'processing' => ['label' => 'Processing', 'icon' => 'bi-gear'],
+                        'shipped' => ['label' => 'Shipped', 'icon' => 'bi-truck'],
+                        'delivered' => ['label' => 'Delivered', 'icon' => 'bi-check2-circle']
+                    ];
+                    
+                    $statusOrder = ['new', 'processing', 'shipped', 'delivered'];
+                    $currentStatusIndex = array_search($order->status, $statusOrder);
+                    if ($currentStatusIndex === false) { $currentStatusIndex = 0; }
+                @endphp
+
+                @foreach($statusOrder as $index => $stepKey)
+                    @php
+                        $step = $steps[$stepKey];
+                        $isCompleted = $index < $currentStatusIndex;
+                        $isCurrent = $index === $currentStatusIndex;
+                        
+                        $circleClass = $isCompleted 
+                            ? 'bg-blue-600 border-blue-600 text-white' 
+                            : ($isCurrent ? 'bg-blue-100 border-blue-600 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400' : 'bg-white dark:bg-slate-900 border-gray-200 text-gray-450 dark:border-slate-800');
+                        $labelClass = $isCompleted || $isCurrent ? 'text-blue-600 dark:text-blue-400 font-bold' : 'text-gray-400 dark:text-slate-500 font-medium';
+                    @endphp
+                    
+                    <div class="relative flex md:flex-col items-center gap-4 md:gap-2 z-10 w-full md:w-auto">
+                        <!-- Step Circle -->
+                        <div class="w-10 h-10 rounded-full border-2 flex items-center justify-center font-bold text-sm shadow-sm transition {{ $circleClass }}">
+                            @if($isCompleted)
+                                <i class="bi bi-check-lg text-base"></i>
+                            @else
+                                <i class="bi {{ $step['icon'] }} text-base"></i>
+                            @endif
+                        </div>
+                        <!-- Step Label -->
+                        <div class="text-left md:text-center">
+                            <span class="block text-xs uppercase tracking-wider {{ $labelClass }}">{{ $step['label'] }}</span>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
     <!-- Quick Info Cards -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <div class="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/80 rounded-2xl p-5 shadow-sm">
@@ -116,8 +179,14 @@
                 <div class="space-y-3">
                     <div class="flex justify-between text-sm text-gray-600 dark:text-slate-400">
                         <span>Subtotal</span>
-                        <span class="font-semibold text-gray-800 dark:text-white">{{ Number::currency($order->grand_total - $order->shipping_amount, 'INR') }}</span>
+                        <span class="font-semibold text-gray-800 dark:text-white">{{ Number::currency($order->grand_total - $order->shipping_amount + $order->discount_amount, 'INR') }}</span>
                     </div>
+                    @if($order->discount_amount > 0)
+                        <div class="flex justify-between text-sm text-gray-600 dark:text-slate-400">
+                            <span>Discount ({{ $order->coupon_code }})</span>
+                            <span class="font-semibold text-red-500">-{{ Number::currency($order->discount_amount, 'INR') }}</span>
+                        </div>
+                    @endif
                     <div class="flex justify-between text-sm text-gray-600 dark:text-slate-400">
                         <span>Shipping</span>
                         <span class="font-semibold text-gray-800 dark:text-white">
