@@ -1,85 +1,125 @@
-<footer class="bg-gray-900 w-full">
-    <div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 lg:pt-20 mx-auto">
-      <!-- Grid -->
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-        <div class="col-span-full lg:col-span-1">
-          <a class="flex-none text-xl font-semibold text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#" aria-label="Brand">ByteWebster</a>
-        </div>
-        <!-- End Col -->
-  
-        <div class="col-span-1">
-          <h4 class="font-semibold text-gray-100">Product</h4>
-  
-          <div class="mt-3 grid space-y-3">
-            <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/categories">Categories</a></p>
-            <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/products">All Products</a></p>
-            <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/products">Featured Products</a></p>
-          </div>
-        </div>
-        <!-- End Col -->
-  
-        <div class="col-span-1">
-          <h4 class="font-semibold text-gray-100">Company</h4>
-  
-          <div class="mt-3 grid space-y-3">
-            <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">About us</a></p>
-            <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">Blog</a></p>
-  
-            <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">Customers</a></p>
-          </div>
-        </div>
-        <!-- End Col -->
-  
-        <div class="col-span-2">
-          <h4 class="font-semibold text-gray-100">Stay up to date</h4>
-  
-          <form>
-            <div class="mt-4 flex flex-col items-center gap-2 sm:flex-row sm:gap-3 bg-white rounded-lg p-2 dark:bg-gray-800">
-              <div class="w-full">
-                <input type="text" id="hero-input" name="hero-input" class="py-3 px-4 block w-full border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-transparent dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your email">
-              </div>
-              <a class="w-full sm:w-auto whitespace-nowrap p-3 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
-                Subscribe
-              </a>
+<footer class="bg-slate-950 text-slate-300 w-full border-t border-slate-900">
+    <div class="max-w-[85rem] py-16 px-4 sm:px-6 lg:px-8 mx-auto">
+        <!-- Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+            <!-- Brand Column -->
+            <div class="col-span-full lg:col-span-2 space-y-6 text-left">
+                <a wire:navigate class="flex items-center gap-2.5 text-2xl font-black tracking-tight text-white" href="/">
+                    <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow-sm">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"></path>
+                        </svg>
+                    </div>
+                    <span class="font-extrabold">Byte<span class="text-blue-500">Webster</span></span>
+                </a>
+                <p class="text-sm text-slate-400 max-w-sm leading-relaxed">
+                    The premium electronics marketplace. Authorized vendor of genuine laptops, smartphones, sound devices, and cameras with official manufacturer coverage.
+                </p>
+
+                <!-- App Download Buttons Mockups -->
+                <div class="flex flex-wrap gap-3 pt-2">
+                    <!-- App Store Button -->
+                    <a href="#" class="inline-flex items-center gap-2.5 bg-slate-900 border border-slate-800 hover:bg-slate-850 px-3.5 py-1.5 rounded-xl shadow-md transition">
+                        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.22.67-2.94 1.51-.64.74-1.2 1.88-1.05 3 .99-.02 2.34-.64 3-1.45z"/>
+                        </svg>
+                        <div class="text-left leading-none">
+                            <p class="text-[8px] text-slate-500 uppercase tracking-widest">Download on the</p>
+                            <p class="text-xs font-bold text-white mt-0.5">App Store</p>
+                        </div>
+                    </a>
+
+                    <!-- Google Play Button -->
+                    <a href="#" class="inline-flex items-center gap-2.5 bg-slate-900 border border-slate-800 hover:bg-slate-850 px-3.5 py-1.5 rounded-xl shadow-md transition">
+                        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M5 3.25A1.75 1.75 0 0 0 3.25 5v14A1.75 1.75 0 0 0 5 20.75h14A1.75 1.75 0 0 0 20.75 19V5A1.75 1.75 0 0 0 19 3.25H5zm1.5 3l4.5 4.5-4.5 4.5V6.25zm1 10.3l3.5-3.5 1.75 1.75-5.25 1.75zm6.5-5.25l3.5-3.5v7l-3.5-3.5zm-1.75-1.75l3.5-3.5H9.25l1.75 1.75z"/>
+                        </svg>
+                        <div class="text-left leading-none">
+                            <p class="text-[8px] text-slate-500 uppercase tracking-widest">Get it on</p>
+                            <p class="text-xs font-bold text-white mt-0.5">Google Play</p>
+                        </div>
+                    </a>
+                </div>
             </div>
-  
-          </form>
+
+            <!-- Product / Shop Link Column -->
+            <div class="col-span-1 text-left space-y-4">
+                <h4 class="font-bold text-sm text-white uppercase tracking-wider">Shop Tech</h4>
+                <div class="grid space-y-2.5 text-xs text-slate-400">
+                    <p><a class="hover:text-blue-500 transition" href="/categories">All Categories</a></p>
+                    <p><a class="hover:text-blue-500 transition" href="/products">All Products</a></p>
+                    <p><a class="hover:text-blue-500 transition" href="/products?selected_categories[0]=1">Smartphones</a></p>
+                    <p><a class="hover:text-blue-500 transition" href="/products?selected_categories[0]=2">Laptops & PCs</a></p>
+                </div>
+            </div>
+
+            <!-- Company Column -->
+            <div class="col-span-1 text-left space-y-4">
+                <h4 class="font-bold text-sm text-white uppercase tracking-wider">Company</h4>
+                <div class="grid space-y-2.5 text-xs text-slate-400">
+                    <p><a class="hover:text-blue-500 transition" href="#">About Us</a></p>
+                    <p><a class="hover:text-blue-500 transition" href="#">Corporate Sales</a></p>
+                    <p><a class="hover:text-blue-500 transition" href="#">Partner Network</a></p>
+                    <p><a class="hover:text-blue-500 transition" href="#">Careers</a></p>
+                </div>
+            </div>
+
+            <!-- Support Column -->
+            <div class="col-span-1 text-left space-y-4">
+                <h4 class="font-bold text-sm text-white uppercase tracking-wider">Support</h4>
+                <div class="grid space-y-2.5 text-xs text-slate-400">
+                    <p><a class="hover:text-blue-500 transition" href="#">Contact Support</a></p>
+                    <p><a class="hover:text-blue-500 transition" href="#">Track Order</a></p>
+                    <p><a class="hover:text-blue-500 transition" href="#">Warranty Info</a></p>
+                    <p><a class="hover:text-blue-500 transition" href="#">Return Policy</a></p>
+                </div>
+            </div>
         </div>
-        <!-- End Col -->
-      </div>
-      <!-- End Grid -->
-  
-      <div class="mt-5 sm:mt-12 grid gap-y-2 sm:gap-y-0 sm:flex sm:justify-between sm:items-center">
-        <div class="flex justify-between items-center">
-          <p class="text-sm text-gray-400">© 2024 ByteWebster. All rights reserved.</p>
+
+        <!-- Divider -->
+        <hr class="border-slate-900 my-8">
+
+        <!-- Bottom Row -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="text-left space-y-1.5">
+                <p class="text-xs text-slate-500">© 2026 ByteWebster Inc. All rights reserved.</p>
+                <!-- Security trust badges -->
+                <div class="flex items-center gap-4 text-[10px] text-slate-650 font-bold uppercase tracking-wider">
+                    <span class="flex items-center gap-1">🛡️ PCI-DSS Secure</span>
+                    <span class="flex items-center gap-1">🔒 SSL 256-Bit Encrypted</span>
+                </div>
+            </div>
+
+            <!-- Payment Methods Mock SVG Container -->
+            <div class="flex flex-wrap gap-2 text-slate-500">
+                <!-- Visa -->
+                <div class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-lg text-[9px] font-bold tracking-widest uppercase">Visa</div>
+                <!-- Mastercard -->
+                <div class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-lg text-[9px] font-bold tracking-widest uppercase">Mastercard</div>
+                <!-- Apple Pay -->
+                <div class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-lg text-[9px] font-bold tracking-widest uppercase">Apple Pay</div>
+                <!-- PayPal -->
+                <div class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-lg text-[9px] font-bold tracking-widest uppercase">PayPal</div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex gap-4">
+                <a class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-850 transition" href="#">
+                    <svg class="w-4.5 h-4.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-850 transition" href="#">
+                    <svg class="w-4.5 h-4.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                </a>
+                <a class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-850 transition" href="#">
+                    <svg class="w-4.5 h-4.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+            </div>
         </div>
-        <!-- End Col -->
-  
-        <!-- Social Brands -->
-        <div>
-          <a class="w-10 h-10 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-white hover:bg-white/10 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-1 focus:ring-gray-600" href="#">
-            <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
-            </svg>
-          </a>
-          <a class="w-10 h-10 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-white hover:bg-white/10 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-1 focus:ring-gray-600" href="#">
-            <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
-            </svg>
-          </a>
-          <a class="w-10 h-10 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-white hover:bg-white/10 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-1 focus:ring-gray-600" href="#">
-            <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
-            </svg>
-          </a>
-          <a class="w-10 h-10 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-white hover:bg-white/10 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-1 focus:ring-gray-600" href="#">
-            <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
-            </svg>
-          </a>
-  
-        </div>
-        <!-- End Social Brands -->
-      </div>
     </div>
-  </footer>
+</footer>
