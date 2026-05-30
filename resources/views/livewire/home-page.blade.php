@@ -197,9 +197,9 @@
 
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                 @foreach ($brands as $brand)
-                    <a wire:navigate href="/products?selected_brands[0]={{ $brand->id }}" class="group flex flex-col bg-slate-50 border border-gray-100 rounded-2xl p-5 hover:shadow-xl hover:shadow-blue-500/5 transition hover-lift text-center" wire:key="brand-{{ $brand->id }}">
-                        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-600 group-hover:text-white transition duration-300 shadow-sm border border-gray-100">
-                            <img class="h-10 w-10 object-contain rounded-full" src="{{ $brand->getImageUrl() }}" alt="{{ $brand->name }}">
+                    <a wire:navigate href="/products?selected_brands[0]={{ $brand->id }}" class="group flex flex-col bg-slate-50/50 border border-slate-100 rounded-2xl p-6 hover:shadow-xl hover:shadow-blue-500/5 transition hover-lift text-center" wire:key="brand-{{ $brand->id }}">
+                        <div class="h-20 w-full bg-white rounded-xl flex items-center justify-center mx-auto mb-4 p-4 shadow-sm border border-slate-100/50">
+                            <img class="h-8 w-auto max-w-[120px] object-contain transition duration-300 filter grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100" src="{{ $brand->getImageUrl() }}" alt="{{ $brand->name }}">
                         </div>
                         <h3 class="font-bold text-slate-800 group-hover:text-blue-600 transition text-sm">
                             {{ $brand->name }}

@@ -75,27 +75,27 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        // 4. Create Brands with real image URLs
+        // 4. Create Brands with real image URLs (official SVG logos)
         $brandsData = [
             'Apple' => [
                 'slug' => 'apple',
-                'image' => 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=300&q=80'
+                'image' => 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg'
             ],
             'Samsung' => [
                 'slug' => 'samsung',
-                'image' => 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=300&q=80'
+                'image' => 'https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg'
             ],
             'Sony' => [
                 'slug' => 'sony',
-                'image' => 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=300&q=80'
+                'image' => 'https://upload.wikimedia.org/wikipedia/commons/c/ca/Sony_logo.svg'
             ],
             'Dell' => [
                 'slug' => 'dell',
-                'image' => 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=300&q=80'
+                'image' => 'https://upload.wikimedia.org/wikipedia/commons/1/18/Dell_logo_2016.svg'
             ],
             'Lenovo' => [
                 'slug' => 'lenovo',
-                'image' => 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=300&q=80'
+                'image' => 'https://upload.wikimedia.org/wikipedia/commons/b/b8/Lenovo_logo_2015.svg'
             ],
         ];
 
