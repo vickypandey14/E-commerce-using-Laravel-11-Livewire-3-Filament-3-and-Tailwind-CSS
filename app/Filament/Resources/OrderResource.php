@@ -117,6 +117,46 @@ class OrderResource extends Resource
                                 'bike_messenger' => 'Bike Messenger',
                             ]),
 
+                        TextInput::make('shipping_amount')
+                            ->numeric()
+                            ->default(0.00)
+                            ->reactive()
+                            ->label('Shipping Cost'),
+
+                        TextInput::make('coupon_code')
+                            ->maxLength(255)
+                            ->dehydrateStateUsing(fn ($state) => strtoupper($state))
+                            ->placeholder('e.g., WELCOME10')
+                            ->reactive()
+                            ->afterStateUpdated(function ($state, Set $set, Get $get) {
+                                if (!$state) {
+                                    $set('discount_amount', 0.00);
+                                    return;
+                                }
+                                $coupon = \App\Models\Coupon::where('code', $state)->first();
+                                if ($coupon && $coupon->isValid()) {
+                                    $subtotal = 0;
+                                    $repeaters = $get('items') ?? [];
+                                    foreach ($repeaters as $key => $repeater) {
+                                        $subtotal += $get("items.{$key}.total_amount");
+                                    }
+                                    if ($subtotal >= $coupon->min_amount) {
+                                        $discount = $coupon->calculateDiscount($subtotal);
+                                        $set('discount_amount', $discount);
+                                    } else {
+                                        $set('discount_amount', 0.00);
+                                    }
+                                } else {
+                                    $set('discount_amount', 0.00);
+                                }
+                            }),
+
+                        TextInput::make('discount_amount')
+                            ->numeric()
+                            ->default(0.00)
+                            ->reactive()
+                            ->label('Discount Amount'),
+
                         Textarea::make('notes')
                             ->columnSpanFull()
                             ->placeholder('Enter a Note...')
@@ -170,15 +210,19 @@ class OrderResource extends Resource
                                 ->content(function (Get $get, Set $set){
                                     $total = 0;
                                     if(!$repeaters = $get('items')){
-                                        return $total;
+                                        return \Illuminate\Support\Number::currency($total, 'INR');
                                     }
 
                                     foreach($repeaters as $key => $reapeater) {
                                         $total += $get("items.{$key}.total_amount");
                                     }
 
-                                    $set('grand_total', $total);
-                                    return \Illuminate\Support\Number::currency($total, 'INR');
+                                    $shipping = floatval($get('shipping_amount') ?? 0);
+                                    $discount = floatval($get('discount_amount') ?? 0);
+                                    $grand_total = max(0, $total + $shipping - $discount);
+
+                                    $set('grand_total', $grand_total);
+                                    return \Illuminate\Support\Number::currency($grand_total, 'INR');
                                 }),
 
 
@@ -236,6 +280,24 @@ class OrderResource extends Resource
                     ->searchable()
                     ->sortable(),
                 
+                TextColumn::make('shipping_amount')
+                    ->label('Shipping Cost')
+                    ->sortable()
+                    ->money('INR')
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                TextColumn::make('coupon_code')
+                    ->label('Coupon Code')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                TextColumn::make('discount_amount')
+                    ->label('Discount Amount')
+                    ->sortable()
+                    ->money('INR')
+                    ->toggleable(isToggledHiddenByDefault: true),
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -253,6 +315,12 @@ class OrderResource extends Resource
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\ViewAction::make(),
                     Tables\Actions\EditAction::make(),
+                    Tables\Actions\Action::make('print_invoice')
+                        ->label('Print Invoice')
+                        ->icon('heroicon-o-printer')
+                        ->color('success')
+                        ->url(fn ($record) => route('orders.invoice', $record))
+                        ->openUrlInNewTab(),
                     Tables\Actions\DeleteAction::make()->requiresConfirmation(),
                 ])
             ])

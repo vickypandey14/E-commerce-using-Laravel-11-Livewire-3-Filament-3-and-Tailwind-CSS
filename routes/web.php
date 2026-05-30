@@ -48,6 +48,13 @@ Route::get('/success', SuccessPage::class)->name('success');
 
 Route::get('/cancelled', CancelPage::class)->name('cancelled');
 
+Route::get('/admin/orders/{order}/invoice', function (App\Models\Order $order) {
+    if (!auth()->check()) {
+        abort(403, 'Unauthorized action.');
+    }
+    return view('orders.invoice', compact('order'));
+})->name('orders.invoice');
+
 
 // Route::get('/', function () {
 //     return view('welcome');

@@ -70,6 +70,13 @@ class BrandResource extends Resource
 
                 Tables\Columns\ImageColumn::make('image'),
 
+                Tables\Columns\TextColumn::make('products_count')
+                    ->counts('products')
+                    ->label('Products')
+                    ->badge()
+                    ->color('info')
+                    ->sortable(),
+
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(),                
 

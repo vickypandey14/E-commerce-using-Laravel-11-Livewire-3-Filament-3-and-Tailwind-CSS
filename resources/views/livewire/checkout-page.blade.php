@@ -115,6 +115,30 @@
                 </ul>
             </div>
 
+            <!-- Promo Code Section -->
+            <div class="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/80 rounded-3xl p-6 shadow-sm space-y-4 text-left">
+                <h3 class="text-sm font-bold text-gray-800 dark:text-white pb-2 border-b border-gray-100 dark:border-slate-800/80">Have a Promo Code?</h3>
+                
+                @if (session()->has('coupon_success'))
+                    <div class="p-3 bg-green-50 dark:bg-green-950/20 text-green-700 dark:text-green-400 text-xs rounded-xl border border-green-200/50">
+                        {{ session('coupon_success') }}
+                    </div>
+                @endif
+                
+                @if (session()->has('coupon_error'))
+                    <div class="p-3 bg-red-50 dark:bg-red-950/20 text-red-700 dark:text-red-400 text-xs rounded-xl border border-red-200/50">
+                        {{ session('coupon_error') }}
+                    </div>
+                @endif
+
+                <div class="flex gap-2">
+                    <input type="text" wire:model.defer="coupon_code" placeholder="e.g., SAVE20, WELCOME10" class="flex-1 py-2 px-3 bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl text-xs focus:border-blue-500 focus:ring-blue-500 dark:text-white uppercase">
+                    <button type="button" wire:click="applyCoupon" class="py-2 px-4 bg-gray-800 dark:bg-slate-700 text-white rounded-xl text-xs font-semibold hover:bg-gray-700 dark:hover:bg-slate-600 transition">
+                        Apply
+                    </button>
+                </div>
+            </div>
+
             <!-- Price Summary -->
             <div class="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/80 rounded-3xl p-6 shadow-sm space-y-6 text-left">
                 <h2 class="text-lg font-bold text-gray-800 dark:text-white border-b border-gray-100 dark:border-slate-800/80 pb-3">Price Summary</h2>
@@ -122,8 +146,14 @@
                 <div class="space-y-3">
                     <div class="flex justify-between text-sm text-gray-600 dark:text-slate-400">
                         <span>Subtotal</span>
-                        <span class="font-semibold text-gray-800 dark:text-white">{{ Number::currency($grand_total, 'INR') }}</span>
+                        <span class="font-semibold text-gray-800 dark:text-white">{{ Number::currency($grand_total + $discount_amount, 'INR') }}</span>
                     </div>
+                    @if ($discount_amount > 0)
+                        <div class="flex justify-between text-sm text-gray-600 dark:text-slate-400">
+                            <span>Discount ({{ $applied_coupon }})</span>
+                            <span class="text-red-650 dark:text-red-400 font-semibold">-{{ Number::currency($discount_amount, 'INR') }}</span>
+                        </div>
+                    @endif
                     <div class="flex justify-between text-sm text-gray-600 dark:text-slate-400">
                         <span>Shipping</span>
                         <span class="text-green-600 font-semibold">Free</span>

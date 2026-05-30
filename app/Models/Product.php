@@ -81,4 +81,19 @@ class Product extends Model
     {
         return $this->belongsTo(OrderItem::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function approvedReviews()
+    {
+        return $this->hasMany(Review::class)->where('is_approved', true);
+    }
+
+    public function getAverageRatingAttribute()
+    {
+        return round($this->approvedReviews()->avg('rating') ?? 0, 1);
+    }
 }

@@ -161,17 +161,13 @@ class ProductResource extends Resource
                     ->money('INR')
                     ->sortable(),
 
-                Tables\Columns\IconColumn::make('is_active')
-                    ->boolean(),
+                Tables\Columns\ToggleColumn::make('is_active'),
 
-                Tables\Columns\IconColumn::make('is_featured')
-                    ->boolean(),
+                Tables\Columns\ToggleColumn::make('is_featured'),
 
-                Tables\Columns\IconColumn::make('in_stock')
-                    ->boolean(),
+                Tables\Columns\ToggleColumn::make('in_stock'),
 
-                Tables\Columns\IconColumn::make('on_sale')
-                    ->boolean(),
+                Tables\Columns\ToggleColumn::make('on_sale'),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

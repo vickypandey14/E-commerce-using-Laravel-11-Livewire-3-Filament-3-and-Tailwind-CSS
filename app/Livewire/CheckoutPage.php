@@ -25,6 +25,11 @@ class CheckoutPage extends Component
     public $zip_code;
     public $payment_method = 'cod'; // default
 
+    // Coupon fields
+    public $coupon_code;
+    public $discount_amount = 0;
+    public $applied_coupon;
+
     public function mount()
     {
         if (!auth()->check()) {
@@ -43,6 +48,54 @@ class CheckoutPage extends Component
         $nameParts = explode(' ', $user->name, 2);
         $this->first_name = $nameParts[0] ?? '';
         $this->last_name = $nameParts[1] ?? '';
+    }
+
+    public function applyCoupon()
+    {
+        if (empty($this->coupon_code)) {
+            session()->flash('coupon_error', 'Please enter a promo code.');
+            return;
+        }
+
+        $coupon = \App\Models\Coupon::where('code', strtoupper($this->coupon_code))->first();
+
+        if (!$coupon) {
+            session()->flash('coupon_error', 'Invalid promo code.');
+            $this->discount_amount = 0;
+            $this->applied_coupon = null;
+            $this->recalculateTotal();
+            return;
+        }
+
+        if (!$coupon->isValid()) {
+            session()->flash('coupon_error', 'This promo code is inactive or expired.');
+            $this->discount_amount = 0;
+            $this->applied_coupon = null;
+            $this->recalculateTotal();
+            return;
+        }
+
+        $subtotal = CartManagement::calculateGrandTotal($this->cart_items);
+
+        if (!$coupon->isValidForAmount($subtotal)) {
+            session()->flash('coupon_error', 'Minimum order value of ' . \Illuminate\Support\Number::currency($coupon->min_amount, 'INR') . ' required.');
+            $this->discount_amount = 0;
+            $this->applied_coupon = null;
+            $this->recalculateTotal();
+            return;
+        }
+
+        $this->discount_amount = $coupon->calculateDiscount($subtotal);
+        $this->applied_coupon = $coupon->code;
+        $this->recalculateTotal();
+
+        session()->flash('coupon_success', 'Promo code applied successfully!');
+    }
+
+    public function recalculateTotal()
+    {
+        $subtotal = CartManagement::calculateGrandTotal($this->cart_items);
+        $this->grand_total = max(0, $subtotal - $this->discount_amount);
     }
 
     public function placeOrder()
@@ -69,6 +122,8 @@ class CheckoutPage extends Component
             'shipping_amount' => 0.00,
             'shipping_method' => 'standard',
             'notes' => 'Placed via checkout page.',
+            'coupon_code' => $this->applied_coupon,
+            'discount_amount' => $this->discount_amount,
         ]);
 
         // Create order items

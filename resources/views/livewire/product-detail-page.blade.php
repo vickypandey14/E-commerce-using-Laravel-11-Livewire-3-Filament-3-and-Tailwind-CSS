@@ -53,6 +53,30 @@
                         {{ $product->name }}
                     </h1>
                     
+                    <!-- Ratings summary -->
+                    <div class="flex items-center space-x-2 pt-1">
+                        <div class="flex text-yellow-400">
+                            @php
+                                $avg = $product->average_rating;
+                                $fullStars = floor($avg);
+                                $hasHalf = ($avg - $fullStars) >= 0.5;
+                                $emptyStars = 5 - $fullStars - ($hasHalf ? 1 : 0);
+                            @endphp
+                            @for ($i = 0; $i < $fullStars; $i++)
+                                <i class="bi bi-star-fill text-xs"></i>
+                            @endfor
+                            @if ($hasHalf)
+                                <i class="bi bi-star-half text-xs"></i>
+                            @endif
+                            @for ($i = 0; $i < $emptyStars; $i++)
+                                <i class="bi bi-star text-xs"></i>
+                            @endfor
+                        </div>
+                        <span class="text-xs text-gray-500 dark:text-slate-400 font-medium">
+                            {{ $product->average_rating }} ({{ $product->approvedReviews->count() }} {{ Str::plural('review', $product->approvedReviews->count()) }})
+                        </span>
+                    </div>
+                    
                     <!-- Stock Badge -->
                     <div class="pt-2">
                         @if($product->in_stock)
@@ -131,6 +155,134 @@
                         <div class="text-gray-500 dark:text-slate-400 text-sm leading-relaxed prose dark:prose-invert">
                             {!! Str::markdown($product->description) !!}
                         </div>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews and Feedback Section -->
+    <div class="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/80 rounded-3xl p-6 sm:p-10 shadow-sm mt-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <!-- Left: Ratings Stats -->
+            <div class="space-y-6 text-left">
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white">Customer Reviews</h3>
+                
+                <div class="flex items-center space-x-4">
+                    <span class="text-5xl font-extrabold text-gray-800 dark:text-white">{{ $product->average_rating }}</span>
+                    <div>
+                        <div class="flex text-yellow-400">
+                            @for ($i = 0; $i < $fullStars; $i++)
+                                <i class="bi bi-star-fill text-base"></i>
+                            @endfor
+                            @if ($hasHalf)
+                                <i class="bi bi-star-half text-base"></i>
+                            @endif
+                            @for ($i = 0; $i < $emptyStars; $i++)
+                                <i class="bi bi-star text-base"></i>
+                            @endfor
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Based on {{ $product->approvedReviews->count() }} ratings</p>
+                    </div>
+                </div>
+
+                <!-- Rating bars -->
+                <div class="space-y-2">
+                    @php
+                        $totalReviews = max(1, $product->approvedReviews->count());
+                    @endphp
+                    @for ($star = 5; $star >= 1; $star--)
+                        @php
+                            $starCount = $product->approvedReviews->where('rating', $star)->count();
+                            $percentage = round(($starCount / $totalReviews) * 100);
+                        @endphp
+                        <div class="flex items-center text-sm">
+                            <span class="w-12 text-gray-600 dark:text-slate-400 font-medium">{{ $star }} Star</span>
+                            <div class="flex-1 mx-3 bg-gray-100 dark:bg-slate-800 rounded-full h-2">
+                                <div class="bg-yellow-400 h-2 rounded-full" style="width: {{ $percentage }}%"></div>
+                            </div>
+                            <span class="w-8 text-right text-gray-400 text-xs">{{ $percentage }}%</span>
+                        </div>
+                    @endfor
+                </div>
+
+                <!-- Write a Review Form -->
+                <div class="pt-6 border-t border-gray-100 dark:border-slate-800/80">
+                    <h4 class="font-bold text-gray-800 dark:text-white text-sm mb-4">Share your thoughts</h4>
+                    @auth
+                        <form wire:submit.prevent="submitReview" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Rating</label>
+                                <select wire:model="rating" class="w-full py-2 px-3 bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl text-xs focus:border-blue-500 focus:ring-blue-500 dark:text-white">
+                                    <option value="5">★★★★★ (5 Stars)</option>
+                                    <option value="4">★★★★☆ (4 Stars)</option>
+                                    <option value="3">★★★☆☆ (3 Stars)</option>
+                                    <option value="2">★★☆☆☆ (2 Stars)</option>
+                                    <option value="1">★☆☆☆☆ (1 Star)</option>
+                                </select>
+                                @error('rating') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Comment</label>
+                                <textarea wire:model="comment" rows="3" placeholder="Write your review here..." class="w-full py-2 px-3 bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl text-xs focus:border-blue-500 focus:ring-blue-500 dark:text-white"></textarea>
+                                @error('comment') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
+                            </div>
+
+                            <button type="submit" class="w-full py-2.5 px-4 bg-blue-600 text-white rounded-xl text-xs font-semibold hover:bg-blue-700 shadow-md shadow-blue-500/10 transition hover-lift">
+                                Submit Review
+                            </button>
+                        </form>
+                    @else
+                        <div class="p-4 bg-gray-50 dark:bg-slate-800/40 border border-gray-200 dark:border-slate-700 rounded-2xl text-center">
+                            <p class="text-xs text-gray-400">Please login to write a product review.</p>
+                            <a href="{{ route('login') }}" class="inline-block mt-3 text-xs font-semibold text-blue-600 hover:text-blue-500">Log In &rarr;</a>
+                        </div>
+                    @endauth
+                </div>
+            </div>
+
+            <!-- Right: Approved reviews list -->
+            <div class="lg:col-span-2 space-y-6 text-left">
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white border-b border-gray-100 dark:border-slate-800/80 pb-3">
+                    Reviews ({{ $product->approvedReviews->count() }})
+                </h3>
+
+                @if ($product->approvedReviews->isEmpty())
+                    <div class="py-12 text-center text-gray-400">
+                        <i class="bi bi-chat-left-dots text-4xl mb-3 block text-gray-300"></i>
+                        <p class="text-sm">No reviews yet for this product. Be the first to leave one!</p>
+                    </div>
+                @else
+                    <div class="divide-y divide-gray-100 dark:divide-slate-800/60 max-h-[500px] overflow-y-auto pr-3 space-y-4">
+                        @foreach ($product->approvedReviews as $rev)
+                            <div class="pt-4 first:pt-0">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold text-xs">
+                                            {{ strtoupper(substr($rev->user->name, 0, 2)) }}
+                                        </div>
+                                        <div>
+                                            <span class="block text-xs font-bold text-gray-800 dark:text-white">{{ $rev->user->name }}</span>
+                                            <span class="block text-[10px] text-gray-400">{{ $rev->created_at->diffForHumans() }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-yellow-400 text-xs">
+                                        @for ($i = 0; $i < $rev->rating; $i++)
+                                            <i class="bi bi-star-fill"></i>
+                                        @endfor
+                                        @for ($i = 0; $i < (5 - $rev->rating); $i++)
+                                            <i class="bi bi-star"></i>
+                                        @endfor
+                                    </div>
+                                </div>
+                                @if ($rev->comment)
+                                    <p class="mt-2 text-xs text-gray-600 dark:text-slate-300 leading-relaxed bg-gray-50 dark:bg-slate-800/30 p-3 rounded-xl border border-gray-100/50 dark:border-slate-800/40">
+                                        {{ $rev->comment }}
+                                    </p>
+                                @endif
+                            </div>
+                        @endforeach
                     </div>
                 @endif
             </div>

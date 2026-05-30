@@ -17,9 +17,13 @@ class ProductDetailPage extends Component
     public $title;
     public $quantity = 1;
 
+    // Review fields
+    public $rating = 5;
+    public $comment;
+
     public function mount($slug)
     {
-        $this->product = Product::where('slug', $slug)->firstOrFail();
+        $this->product = Product::where('slug', $slug)->with('approvedReviews.user')->firstOrFail();
         $this->title = $this->product->name . " - ByteWebster";
     }
 
@@ -50,6 +54,56 @@ class ProductDetailPage extends Component
             'toast' => true,
         ]);
         
+    }
+
+    public function submitReview()
+    {
+        if (!auth()->check()) {
+            $this->alert('error', 'Please login to leave a review.', [
+                'position' => 'top-end',
+                'timer' => 3000,
+                'toast' => true,
+            ]);
+            return;
+        }
+
+        $this->validate([
+            'rating' => 'required|integer|between:1,5',
+            'comment' => 'nullable|string|max:1000',
+        ]);
+
+        $existing = \App\Models\Review::where('user_id', auth()->id())
+            ->where('product_id', $this->product->id)
+            ->first();
+
+        if ($existing) {
+            $this->alert('warning', 'You have already reviewed this product.', [
+                'position' => 'top-end',
+                'timer' => 3000,
+                'toast' => true,
+            ]);
+            return;
+        }
+
+        \App\Models\Review::create([
+            'user_id' => auth()->id(),
+            'product_id' => $this->product->id,
+            'rating' => $this->rating,
+            'comment' => $this->comment,
+            'is_approved' => true,
+        ]);
+
+        $this->comment = '';
+        $this->rating = 5;
+
+        // Reload the product relationships
+        $this->product->load('approvedReviews.user');
+
+        $this->alert('success', 'Thank you! Your review has been posted.', [
+            'position' => 'top-end',
+            'timer' => 3000,
+            'toast' => true,
+        ]);
     }
 
     public function render()
