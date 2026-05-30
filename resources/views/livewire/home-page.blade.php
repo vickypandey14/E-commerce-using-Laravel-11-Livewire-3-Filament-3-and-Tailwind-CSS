@@ -1,17 +1,17 @@
 <div class="w-full bg-slate-50/50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen">
     <!-- HERO SECTION -->
-    <div class="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 py-24 lg:py-32 border-b border-slate-900/50">
+    <div class="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/40 py-24 lg:py-32 border-b border-slate-200/60">
         <!-- Abstract gradient mesh & particles background -->
-        <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:20px_20px] opacity-20"></div>
-        <div class="absolute top-0 right-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-3xl -z-10 animate-pulse"></div>
-        <div class="absolute bottom-0 left-10 w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:20px_20px] opacity-40"></div>
+        <div class="absolute top-0 right-1/4 w-[600px] h-[600px] bg-blue-450/10 rounded-full blur-3xl -z-10 animate-pulse"></div>
+        <div class="absolute bottom-0 left-10 w-[600px] h-[600px] bg-indigo-450/10 rounded-full blur-3xl -z-10"></div>
         
         <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid lg:grid-cols-12 gap-12 items-center">
                 <!-- Left text column -->
                 <div class="space-y-8 text-left lg:col-span-6">
                     <!-- Status Badge -->
-                    <div class="inline-flex items-center gap-2 py-1.5 px-3.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 shadow-sm text-blue-400 backdrop-blur-md">
+                    <div class="inline-flex items-center gap-2 py-1.5 px-3.5 rounded-full text-xs font-semibold bg-blue-50 border border-blue-100 shadow-sm text-blue-600 backdrop-blur-md">
                         <span class="flex h-2 w-2 relative">
                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                             <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
@@ -20,42 +20,42 @@
                     </div>
 
                     <!-- Direct Headline -->
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.05]">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-[1.05]">
                         Sleek, Genuine Tech.<br/>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400">Direct From Brands.</span>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-650 to-cyan-600">Direct From Brands.</span>
                     </h1>
 
                     <!-- Clear Subheadline -->
-                    <p class="text-lg text-slate-350 max-w-xl leading-relaxed">
+                    <p class="text-lg text-slate-650 max-w-xl leading-relaxed">
                         Skip the markup and buy directly from manufacturer stocks. We inventory only authenticated smartphones, laptops, audio gear, and cameras with official worldwide warranties.
                     </p>
                     
-                    <!-- Call to Action Buttons -->
+                    <!-- Call to Action Buttons (Fixed Contrast & Styles) -->
                     <div class="flex flex-wrap gap-4 pt-2">
-                        <a wire:navigate href="/products" class="py-3.5 px-8 inline-flex justify-center items-center gap-x-2.5 text-sm font-bold rounded-xl bg-blue-600 text-white hover:bg-blue-500 shadow-xl shadow-blue-500/20 hover:-translate-y-0.5 transition duration-200">
+                        <a wire:navigate href="/products" class="py-3.5 px-8 inline-flex justify-center items-center gap-x-2.5 text-sm font-bold rounded-xl bg-gradient-to-r from-blue-650 to-indigo-600 hover:from-blue-600 hover:to-indigo-500 text-white shadow-xl shadow-blue-500/10 hover:shadow-blue-500/20 hover:-translate-y-0.5 transition duration-200">
                             Shop Now
                             <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
                             </svg>
                         </a>
-                        <a wire:navigate href="/categories" class="py-3.5 px-8 inline-flex justify-center items-center gap-x-2.5 text-sm font-bold rounded-xl bg-white/10 text-white hover:bg-white/15 border border-white/10 shadow-sm hover:-translate-y-0.5 transition duration-200">
+                        <a wire:navigate href="/categories" class="py-3.5 px-8 inline-flex justify-center items-center gap-x-2.5 text-sm font-bold rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm hover:-translate-y-0.5 transition duration-200">
                             Explore Categories
                         </a>
                     </div>
 
                     <!-- Enterprise Trust Badges -->
-                    <div class="grid grid-cols-3 gap-6 pt-8 border-t border-white/10 max-w-md">
+                    <div class="grid grid-cols-3 gap-6 pt-8 border-t border-slate-200/80 max-w-md">
                         <div>
-                            <p class="text-3xl font-extrabold text-blue-400 tracking-tight">100%</p>
-                            <p class="text-[10px] font-bold text-slate-450 uppercase tracking-wider mt-1">Authorized Dealer</p>
+                            <p class="text-3xl font-extrabold text-blue-600 tracking-tight">100%</p>
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mt-1">Authorized Dealer</p>
                         </div>
                         <div>
-                            <p class="text-3xl font-extrabold text-indigo-400 tracking-tight">24/7</p>
-                            <p class="text-[10px] font-bold text-slate-450 uppercase tracking-wider mt-1">Direct Support</p>
+                            <p class="text-3xl font-extrabold text-indigo-650 tracking-tight">24/7</p>
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mt-1">Direct Support</p>
                         </div>
                         <div>
-                            <p class="text-3xl font-extrabold text-cyan-400 tracking-tight">Free</p>
-                            <p class="text-[10px] font-bold text-slate-450 uppercase tracking-wider mt-1">Express Shipping</p>
+                            <p class="text-3xl font-extrabold text-cyan-600 tracking-tight">Free</p>
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mt-1">Express Shipping</p>
                         </div>
                     </div>
                 </div>
@@ -63,17 +63,17 @@
                 <!-- Right visual column: Dynamic 3D floating layers -->
                 <div class="lg:col-span-6 relative flex justify-center items-center h-[480px] lg:pl-10">
                     <!-- Subtle Glow Ring behind Image -->
-                    <div class="absolute w-[450px] h-[450px] bg-blue-500/10 rounded-full blur-3xl -z-10"></div>
+                    <div class="absolute w-[450px] h-[450px] bg-blue-500/5 rounded-full blur-3xl -z-10"></div>
                     
-                    <!-- Background Card (MacBook Pro) -->
-                    <div class="absolute w-[360px] aspect-[4/3] rounded-3xl bg-slate-900/60 backdrop-blur-xl border border-white/10 p-2.5 shadow-2xl transform -rotate-6 -translate-y-6 hover:rotate-0 hover:translate-y-0 transition-all duration-500 z-10 group">
-                        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=500&q=80" alt="MacBook Pro" class="w-full h-full object-cover rounded-2.5xl grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition duration-300">
+                    <!-- Background Card (MacBook Pro - White Glassmorphic) -->
+                    <div class="absolute w-[360px] aspect-[4/3] rounded-3xl bg-white/80 backdrop-blur-xl border border-slate-200/50 p-2.5 shadow-2xl transform -rotate-6 -translate-y-6 hover:rotate-0 hover:translate-y-0 transition-all duration-500 z-10 group">
+                        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=500&q=80" alt="MacBook Pro" class="w-full h-full object-cover rounded-2.5xl transition duration-300">
                     </div>
 
-                    <!-- Mid Card (Sony Alpha Camera) -->
-                    <div class="absolute w-[220px] aspect-square rounded-3xl bg-slate-850 border border-white/15 p-2 shadow-2xl transform translate-x-24 translate-y-12 rotate-12 hover:rotate-0 hover:-translate-y-2 transition-all duration-500 z-20 hover:scale-105 group">
+                    <!-- Mid Card (Sony Alpha Camera - White Glassmorphic) -->
+                    <div class="absolute w-[220px] aspect-square rounded-3xl bg-white/95 backdrop-blur-xl border border-slate-200/60 p-2 shadow-2xl transform translate-x-24 translate-y-12 rotate-12 hover:rotate-0 hover:-translate-y-2 transition-all duration-500 z-20 hover:scale-105 group">
                         <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=400&q=80" alt="Sony Alpha Camera" class="w-full h-full object-cover rounded-2.5xl transition duration-300">
-                        <span class="absolute bottom-3 left-3 px-2 py-0.5 bg-black/60 backdrop-blur-sm rounded-lg text-[9px] font-bold text-white uppercase">Sony Alpha</span>
+                        <span class="absolute bottom-3 left-3 px-2 py-0.5 bg-slate-900/90 backdrop-blur-sm rounded-lg text-[9px] font-bold text-white uppercase">Sony Alpha</span>
                     </div>
 
                     <!-- Foreground Card (Apple iPhone 15 Pro) -->
@@ -84,16 +84,16 @@
                     </div>
 
                     <!-- Floating Pill Indicator 1: Rating -->
-                    <div class="absolute top-8 right-2 lg:right-6 bg-slate-900/90 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-xl shadow-xl z-40 animate-bounce flex items-center gap-1.5 text-xs text-white">
-                        <span class="text-amber-400">★</span>
-                        <span class="font-bold">4.9</span>
-                        <span class="text-slate-400 text-[10px]">(3.2k Ratings)</span>
+                    <div class="absolute top-8 right-2 lg:right-6 bg-white/95 backdrop-blur-md border border-slate-200 px-3.5 py-2 rounded-xl shadow-xl z-40 animate-bounce flex items-center gap-1.5 text-xs text-slate-805">
+                        <span class="text-amber-500">★</span>
+                        <span class="font-bold text-slate-800">4.9</span>
+                        <span class="text-slate-500 text-[10px]">(3.2k Ratings)</span>
                     </div>
 
                     <!-- Floating Pill Indicator 2: Warranty -->
                     <div class="absolute bottom-8 left-2 lg:left-8 bg-white/95 backdrop-blur-md border border-slate-200/80 px-3.5 py-2 rounded-xl shadow-xl z-40 flex items-center gap-2 text-xs text-slate-800">
                         <div class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-ping"></div>
-                        <span class="font-bold">Original Brand Warranty</span>
+                        <span class="font-bold text-slate-800">Original Brand Warranty</span>
                     </div>
                 </div>
             </div>
@@ -592,26 +592,25 @@
     </div>
 
     <!-- NEWSLETTER SECTION -->
-    <div class="relative overflow-hidden bg-slate-950 text-white py-20 border-b border-slate-900">
+    <div class="relative overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50/30 to-slate-50 border-t border-b border-slate-200/60 py-20">
         <!-- background accents -->
-        <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-15"></div>
-        <div class="absolute inset-0 bg-gradient-to-tr from-blue-900/10 via-transparent to-indigo-900/10"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:24px_24px] opacity-40"></div>
         
         <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="max-w-2xl mx-auto text-center space-y-6">
-                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-bold text-blue-400">Exclusive Newsletter</span>
-                <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-white leading-tight">
+                <span class="px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full text-xs font-bold text-blue-600 shadow-sm">Exclusive Newsletter</span>
+                <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 leading-tight">
                     Unlock Special Member Pricing
                 </h2>
-                <p class="text-sm text-slate-400 max-w-lg mx-auto leading-relaxed">
+                <p class="text-sm text-slate-650 max-w-lg mx-auto leading-relaxed">
                     Subscribe to receive custom direct manufacturer discounts, priority stock notifications, and expert tech content.
                 </p>
 
                 <!-- Input form -->
                 <form class="max-w-md mx-auto pt-2">
-                    <div class="flex flex-col sm:flex-row gap-3 bg-white/5 border border-white/10 p-2 rounded-2xl">
-                        <input type="email" placeholder="Enter your business email" class="flex-1 py-3 px-4 bg-transparent border-transparent text-sm focus:outline-none placeholder-slate-500 text-white rounded-xl">
-                        <button type="submit" class="py-3 px-6 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold text-xs shadow-md shadow-blue-500/20 transition-all duration-200">
+                    <div class="flex flex-col sm:flex-row gap-3 bg-white border border-slate-200/80 p-2 rounded-2xl shadow-sm">
+                        <input type="email" placeholder="Enter your business email" class="flex-1 py-3 px-4 bg-transparent border-transparent text-sm focus:outline-none placeholder-slate-405 text-slate-800 rounded-xl">
+                        <button type="submit" class="py-3 px-6 bg-blue-650 hover:bg-blue-600 rounded-xl font-bold text-xs text-white shadow-md shadow-blue-500/10 hover:shadow-blue-500/20 transition-all duration-200">
                             Join Exclusive List
                         </button>
                     </div>
