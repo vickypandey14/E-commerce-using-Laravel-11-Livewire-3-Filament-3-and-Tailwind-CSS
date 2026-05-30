@@ -37,6 +37,13 @@ class HomePage extends Component
         $featured_products = Product::where('is_active', 1)->where('is_featured', 1)->take(8)->get();
         $flash_deals = Product::where('is_active', 1)->where('on_sale', 1)->take(6)->get();
 
-        return view('livewire.home-page', compact('brands', 'categories', 'featured_products', 'flash_deals'));
+        // Fetch dynamic products for the carousel hero slider
+        $hero_products = [
+            'apple' => Product::where('brand_id', 1)->where('is_active', 1)->orderBy('is_featured', 'desc')->first(),
+            'samsung' => Product::where('brand_id', 2)->where('is_active', 1)->orderBy('is_featured', 'desc')->first(),
+            'sony' => Product::where('brand_id', 3)->where('is_active', 1)->orderBy('is_featured', 'desc')->first(),
+        ];
+
+        return view('livewire.home-page', compact('brands', 'categories', 'featured_products', 'flash_deals', 'hero_products'));
     }
 }

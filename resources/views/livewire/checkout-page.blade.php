@@ -95,9 +95,9 @@
                     @foreach ($cart_items as $item)
                         <li class="py-3.5 flex items-center justify-between gap-4">
                             <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-slate-50 dark:bg-slate-950/20 border border-gray-100 dark:border-slate-800/60 rounded-lg overflow-hidden flex items-center justify-center p-1 flex-shrink-0">
+                                <div class="w-10 h-10 bg-slate-50 dark:bg-slate-950/20 border border-gray-105 dark:border-slate-800/60 rounded-lg overflow-hidden flex items-center justify-center p-1 flex-shrink-0">
                                     @if($item['image'])
-                                        <img class="object-contain w-full h-full" src="{{ url('storage', $item['image']) }}" alt="{{ $item['name'] }}">
+                                        <img class="object-contain w-full h-full" src="{{ (str_starts_with($item['image'], 'http://') || str_starts_with($item['image'], 'https://')) ? $item['image'] : url('storage/' . $item['image']) }}" alt="{{ $item['name'] }}">
                                     @else
                                         <img class="object-contain w-full h-full" src="https://placehold.co/150x150/6366f1/ffffff?text={{ urlencode($item['name']) }}" alt="{{ $item['name'] }}">
                                     @endif

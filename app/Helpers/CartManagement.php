@@ -8,7 +8,7 @@ class CartManagement {
 
     // add item to cart
 
-    static public function addItemToCart($product_id)
+    static public function addItemToCart($product_id, $qty = 1)
     {
         $cart_items = self::getCartItemsFromCookie();
 
@@ -22,8 +22,8 @@ class CartManagement {
             }
         }
 
-        if ($existing_item !==null) {
-            $cart_items[$existing_item]['quantity']++;
+        if ($existing_item !== null) {
+            $cart_items[$existing_item]['quantity'] += $qty;
             $cart_items[$existing_item]['total_amount'] = $cart_items[$existing_item]['quantity'] * $cart_items[$existing_item]['unit_amount'];
         } else {
             $product = Product::where('id', $product_id)->first(['id', 'name', 'price', 'images']);
@@ -33,9 +33,9 @@ class CartManagement {
                     'product_id' => $product->id,
                     'name' => $product->name,
                     'image' => (!empty($product->images) && isset($product->images[0])) ? $product->images[0] : '',
-                    'quantity' => 1,
+                    'quantity' => $qty,
                     'unit_amount' => $product->price,
-                    'total_amount' => $product->price
+                    'total_amount' => $product->price * $qty
                 ];
             }
         }
