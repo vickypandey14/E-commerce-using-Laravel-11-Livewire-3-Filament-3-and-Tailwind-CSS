@@ -42,7 +42,7 @@
             <!-- Categories Filter -->
             <div class="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/80 rounded-2xl p-5 shadow-sm">
                 <h3 class="font-bold text-gray-800 dark:text-gray-200 text-sm uppercase tracking-wider mb-4 border-b border-gray-100 dark:border-slate-800/80 pb-2">Categories</h3>
-                <div class="space-y-3 max-h-48 overflow-y-auto pr-2">
+                <div class="space-y-3 max-h-48 overflow-y-auto scrollbar-none pr-2">
                     @foreach ($categories as $category)
                         <label for="cat-{{ $category->id }}" class="flex items-center text-sm text-gray-600 dark:text-slate-300 cursor-pointer select-none">
                             <input type="checkbox" wire:model.live="selected_categories" id="cat-{{ $category->id }}" value="{{ $category->id }}" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mr-3">
@@ -55,7 +55,7 @@
             <!-- Brands Filter -->
             <div class="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/80 rounded-2xl p-5 shadow-sm">
                 <h3 class="font-bold text-gray-800 dark:text-gray-200 text-sm uppercase tracking-wider mb-4 border-b border-gray-100 dark:border-slate-800/80 pb-2">Brands</h3>
-                <div class="space-y-3 max-h-48 overflow-y-auto pr-2">
+                <div class="space-y-3 max-h-48 overflow-y-auto scrollbar-none pr-2">
                     @foreach ($brands as $brand)
                         <label for="brand-{{ $brand->id }}" class="flex items-center text-sm text-gray-600 dark:text-slate-300 cursor-pointer select-none">
                             <input type="checkbox" wire:model.live="selected_brands" id="brand-{{ $brand->id }}" value="{{ $brand->id }}" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mr-3">
