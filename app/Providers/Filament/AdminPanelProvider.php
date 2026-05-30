@@ -77,4 +77,28 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ]);
     }
+
+    public function boot(): void
+    {
+        \Filament\Support\Facades\FilamentView::registerRenderHook(
+            \Filament\View\PanelsRenderHook::HEAD_END,
+            fn (): \Illuminate\Support\HtmlString => new \Illuminate\Support\HtmlString('
+                <style>
+                    /* Hide scrollbar for Chrome, Safari and Opera */
+                    .fi-sidebar-nav::-webkit-scrollbar,
+                    .fi-sidebar::-webkit-scrollbar,
+                    .fi-sidebar-nav-container::-webkit-scrollbar {
+                        display: none !important;
+                    }
+                    /* Hide scrollbar for IE, Edge and Firefox */
+                    .fi-sidebar-nav,
+                    .fi-sidebar,
+                    .fi-sidebar-nav-container {
+                        -ms-overflow-style: none !important;  /* IE and Edge */
+                        scrollbar-width: none !important;  /* Firefox */
+                    }
+                </style>
+            '),
+        );
+    }
 }
