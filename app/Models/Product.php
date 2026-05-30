@@ -107,4 +107,9 @@ class Product extends Model
         if (!$userId) return false;
         return $this->wishlists()->where('user_id', $userId)->exists();
     }
+
+    public function faqs()
+    {
+        return $this->hasMany(ProductFaq::class);
+    }
 }
