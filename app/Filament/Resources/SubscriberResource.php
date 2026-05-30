@@ -18,6 +18,8 @@ class SubscriberResource extends Resource
 
     protected static ?int $navigationSort = 11;
 
+    protected static ?string $navigationGroup = 'Settings';
+
     public static function form(Form $form): Form
     {
         return $form

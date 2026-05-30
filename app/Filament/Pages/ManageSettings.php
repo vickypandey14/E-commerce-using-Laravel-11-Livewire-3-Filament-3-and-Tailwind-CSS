@@ -24,6 +24,8 @@ class ManageSettings extends Page
 
     protected static ?int $navigationSort = 9;
 
+    protected static ?string $navigationGroup = 'Settings';
+
     public ?array $data = [];
 
     public function mount(): void

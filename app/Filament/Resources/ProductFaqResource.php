@@ -18,6 +18,8 @@ class ProductFaqResource extends Resource
 
     protected static ?int $navigationSort = 9;
 
+    protected static ?string $navigationGroup = 'Shop';
+
     public static function form(Form $form): Form
     {
         return $form

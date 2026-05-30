@@ -21,6 +21,8 @@ class SupportTicketResource extends Resource
 
     protected static ?int $navigationSort = 12;
 
+    protected static ?string $navigationGroup = 'User';
+
     public static function form(Form $form): Form
     {
         return $form

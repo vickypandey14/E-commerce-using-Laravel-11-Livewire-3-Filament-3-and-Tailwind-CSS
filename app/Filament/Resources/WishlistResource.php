@@ -21,6 +21,8 @@ class WishlistResource extends Resource
 
     protected static ?int $navigationSort = 8;
 
+    protected static ?string $navigationGroup = 'Shop';
+
     public static function form(Form $form): Form
     {
         return $form

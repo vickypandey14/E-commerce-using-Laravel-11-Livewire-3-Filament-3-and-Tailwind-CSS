@@ -40,6 +40,17 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
+            ->navigationGroups([
+                \Filament\Navigation\NavigationGroup::make()
+                    ->label('User')
+                    ->collapsible(false),
+                \Filament\Navigation\NavigationGroup::make()
+                    ->label('Shop')
+                    ->collapsible(false),
+                \Filament\Navigation\NavigationGroup::make()
+                    ->label('Settings')
+                    ->collapsible(false),
+            ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([

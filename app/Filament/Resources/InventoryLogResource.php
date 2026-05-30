@@ -20,6 +20,8 @@ class InventoryLogResource extends Resource
 
     protected static ?int $navigationSort = 13;
 
+    protected static ?string $navigationGroup = 'Shop';
+
     public static function form(Form $form): Form
     {
         return $form
