@@ -1,68 +1,135 @@
-<div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
-    <section class="overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
-      <div class="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
-        <div class="flex flex-wrap -mx-4">
-          <div class="w-full mb-8 md:w-1/2 md:mb-0" x-data="{ mainImage: '{{ url('storage', $product->images[0]) }}' }">
-            <div class="sticky top-0 z-50 overflow-hidden ">
-              <div class="relative mb-6 lg:mb-10 lg:h-2/4 ">
-                <img x-bind:src="mainImage" alt="" class="object-cover w-full lg:h-full ">
-              </div>
-              <div class="flex-wrap hidden md:flex">
+@php
+    $mainImage = !empty($product->images) && isset($product->images[0]) 
+        ? url('storage', $product->images[0]) 
+        : 'https://placehold.co/600x600/6366f1/ffffff?text=' . urlencode($product->name);
+@endphp
 
-                @foreach ($product->images as $image)
-                
-                  <div class="w-1/2 p-2 sm:w-1/4" x-on:click="mainImage='{{ url('storage', $image) }}'">
-                    <img src="{{ url('storage', $image) }}" alt="{{ $product->name }}" class="object-cover w-full lg:h-20 cursor-pointer hover:border hover:border-blue-500">
-                  </div>
+<div class="w-full max-w-[85rem] py-12 px-4 sm:px-6 lg:px-8 mx-auto" x-data="{ mainImage: '{{ $mainImage }}' }">
+    <div class="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/80 rounded-3xl p-6 sm:p-10 shadow-sm">
+        <div class="flex flex-col lg:flex-row gap-12">
+            <!-- Left: Product Images -->
+            <div class="w-full lg:w-1/2 space-y-6">
+                <!-- Large Main Image View -->
+                <div class="relative bg-slate-50 dark:bg-slate-950/20 border border-gray-100 dark:border-slate-800/80 rounded-2xl aspect-square overflow-hidden flex items-center justify-center shadow-sm">
+                    <img x-bind:src="mainImage" alt="{{ $product->name }}" class="object-contain w-full h-full p-6 transition duration-300">
+                    
+                    @if($product->on_sale)
+                        <span class="absolute top-4 left-4 bg-red-500 text-white font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full shadow">Sale</span>
+                    @endif
+                </div>
 
-                @endforeach
-  
-              </div>
-              <div class="px-6 pb-6 mt-6 border-t border-gray-300 dark:border-gray-400 ">
-                <div class="flex flex-wrap items-center mt-6">
-                  <span class="mr-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-4 h-4 text-gray-700 dark:text-gray-400 bi bi-truck" viewBox="0 0 16 16">
-                      <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z">
-                      </path>
-                    </svg>
-                  </span>
-                  <h2 class="text-lg font-bold text-gray-700 dark:text-gray-400">Free Shipping</h2>
+                <!-- Thumbnail Carousel/Grid -->
+                @if(!empty($product->images) && count($product->images) > 1)
+                    <div class="flex flex-wrap gap-3">
+                        @foreach ($product->images as $image)
+                            <button x-on:click="mainImage = '{{ url('storage', $image) }}'" class="w-20 h-20 bg-slate-50 dark:bg-slate-950/20 border hover:border-blue-600 dark:border-slate-800 rounded-xl overflow-hidden p-1 transition">
+                                <img src="{{ url('storage', $image) }}" alt="{{ $product->name }}" class="object-contain w-full h-full">
+                            </button>
+                        @endforeach
+                    </div>
+                @endif
+
+                <!-- Shipping Feature List -->
+                <div class="pt-6 border-t border-gray-100 dark:border-slate-800/85">
+                    <div class="flex items-center space-x-3 text-sm text-gray-600 dark:text-slate-400">
+                        <span class="text-xl">🚚</span>
+                        <div>
+                            <span class="font-bold text-gray-800 dark:text-white">Free Express Shipping</span>
+                            <p class="text-xs text-gray-400 mt-0.5">Estimated delivery: 3 - 5 business days.</p>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-          <div class="w-full px-4 md:w-1/2 ">
-            <div class="lg:pl-20">
-              <div class="mb-8 [&>ul]:list-disc [&>ul]:ml-4">
-                <h2 class="max-w-xl mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">{{ $product->name }}</h2>
-                <p class="inline-block mb-6 text-4xl font-bold text-gray-700 dark:text-gray-400 ">
-                  <span>{{ Number::currency($product->price, 'INR') }}</span>
-                  {{-- <span class="text-base font-normal text-gray-500 line-through dark:text-gray-400">$1800.99</span> --}}
-                </p>
-                <p class="max-w-md text-gray-700 dark:text-gray-400">
-                  {!! Str::markdown($product->short_description) !!}
-                </p>
-              </div>
-              <div class="w-32 mb-8 ">
-                <label for="" class="w-full pb-1 text-xl font-semibold text-gray-700 border-b border-blue-300 dark:border-gray-600 dark:text-gray-400">Quantity</label>
-                <div class="relative flex flex-row w-full h-10 mt-6 bg-transparent rounded-lg">
-                  <button wire:click='decreaseQty' class="w-20 h-full text-gray-600 bg-gray-300 rounded-l outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 hover:text-gray-700 dark:bg-gray-900 hover:bg-gray-400">
-                    <span class="m-auto text-2xl font-thin">-</span>
-                  </button>
-                  <input type="number" wire:model='quantity' readonly class="flex items-center w-full font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-300 outline-none dark:text-gray-400 dark:placeholder-gray-400 dark:bg-gray-900 focus:outline-none text-md hover:text-black" placeholder="1">
-                  <button wire:click='increaseQty' class="w-20 h-full text-gray-600 bg-gray-300 rounded-r outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 dark:bg-gray-900 hover:text-gray-700 hover:bg-gray-400">
-                    <span class="m-auto text-2xl font-thin">+</span>
-                  </button>
+
+            <!-- Right: Product Information -->
+            <div class="w-full lg:w-1/2 space-y-6 text-left">
+                <div class="space-y-2">
+                    <span class="text-xs text-blue-600 dark:text-blue-400 font-bold uppercase tracking-widest">{{ $product->brand->name ?? 'Brand' }}</span>
+                    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-800 dark:text-white leading-tight">
+                        {{ $product->name }}
+                    </h1>
+                    
+                    <!-- Stock Badge -->
+                    <div class="pt-2">
+                        @if($product->in_stock)
+                            <span class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-600 dark:bg-green-400"></span>
+                                In Stock
+                            </span>
+                        @else
+                            <span class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full text-xs font-semibold bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-red-600 dark:bg-red-400"></span>
+                                Out of Stock
+                            </span>
+                        @endif
+                    </div>
                 </div>
-              </div>
-              <div class="flex flex-wrap items-center gap-4">
-                <button wire:click='addToCart({{ $product->id }})' class="w-full p-4 bg-blue-500 rounded-md lg:w-2/5 dark:text-gray-200 text-gray-50 hover:bg-blue-600 dark:bg-blue-500 dark:hover:bg-blue-700">
-                  <span wire:loading.remove>Add to cart</span><span wire:loading>Adding...</span>
-                </button>
-              </div>
+
+                <!-- Price and Info -->
+                <div class="py-4 border-y border-gray-100 dark:border-slate-800/80">
+                    <p class="text-3xl font-extrabold text-blue-600 dark:text-blue-400">
+                        {{ Number::currency($product->price, 'INR') }}
+                    </p>
+                    @if($product->sku)
+                        <p class="text-xs text-gray-400 dark:text-slate-500 mt-2 font-mono">SKU: {{ $product->sku }}</p>
+                    @endif
+                </div>
+
+                <!-- Short Description -->
+                <div class="text-gray-600 dark:text-slate-300 text-sm leading-relaxed prose dark:prose-invert">
+                    @if($product->short_description)
+                        {!! Str::markdown($product->short_description) !!}
+                    @else
+                        <p>No description provided for this product.</p>
+                    @endif
+                </div>
+
+                <!-- Actions -->
+                <div class="space-y-4 pt-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-32">
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Quantity</label>
+                            <div class="flex items-center bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl overflow-hidden">
+                                <button type="button" wire:click="decreaseQty" class="p-2.5 text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-700/50 transition w-10 flex items-center justify-center font-bold">
+                                    -
+                                </button>
+                                <span class="flex-1 text-center font-bold text-sm text-gray-800 dark:text-white">
+                                    {{ $quantity }}
+                                </span>
+                                <button type="button" wire:click="increaseQty" class="p-2.5 text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-700/50 transition w-10 flex items-center justify-center font-bold">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex-1 pt-6">
+                            @if($product->in_stock)
+                                <button type="button" wire:click="addToCart({{ $product->id }})" class="w-full py-3 px-6 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-xl border border-transparent bg-blue-600 text-white hover:bg-blue-700 shadow-md shadow-blue-500/10 hover:shadow-blue-500/20 transition hover-lift">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.119-1.243l1.263-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"></path>
+                                    </svg>
+                                    <span wire:loading.remove wire:target="addToCart({{ $product->id }})">Add to Cart</span>
+                                    <span wire:loading wire:target="addToCart({{ $product->id }})">Adding...</span>
+                                </button>
+                            @else
+                                <button type="button" disabled class="w-full py-3 px-6 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-xl border border-transparent bg-gray-200 text-gray-500 cursor-not-allowed dark:bg-slate-800 dark:text-slate-500">
+                                    Out of Stock
+                                </button>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Full Description / Additional Info Accordion -->
+                @if($product->description)
+                    <div class="pt-6 border-t border-gray-100 dark:border-slate-800/80">
+                        <h3 class="font-bold text-gray-800 dark:text-white text-base mb-3">Product Specifications</h3>
+                        <div class="text-gray-500 dark:text-slate-400 text-sm leading-relaxed prose dark:prose-invert">
+                            {!! Str::markdown($product->description) !!}
+                        </div>
+                    </div>
+                @endif
             </div>
-          </div>
         </div>
-      </div>
-    </section>
+    </div>
 </div>

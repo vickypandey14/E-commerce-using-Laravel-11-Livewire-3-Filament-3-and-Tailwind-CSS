@@ -30,8 +30,9 @@ class CartManagement {
 
             if ($product) {
                 $cart_items[] = [
-                    'product_id' => $product->name,
-                    'image' => $product->images[0],
+                    'product_id' => $product->id,
+                    'name' => $product->name,
+                    'image' => (!empty($product->images) && isset($product->images[0])) ? $product->images[0] : '',
                     'quantity' => 1,
                     'unit_amount' => $product->price,
                     'total_amount' => $product->price

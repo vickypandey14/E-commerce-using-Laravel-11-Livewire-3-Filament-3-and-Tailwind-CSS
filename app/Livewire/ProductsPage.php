@@ -39,6 +39,9 @@ class ProductsPage extends Component
     #[Url]
     public $sort = 'latest';
 
+    #[Url]
+    public $search = '';
+
     // Method for adding the product in the cart
 
     public function addToCart($product_id)
@@ -84,6 +87,10 @@ class ProductsPage extends Component
 
         if($this->price_range){
             $products->whereBetween('price', [0, $this->price_range]);
+        }
+
+        if(!empty($this->search)){
+            $products->where('name', 'like', '%' . $this->search . '%');
         }
 
         if($this->sort == 'latest'){

@@ -1,3 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    body {
+        font-family: 'Outfit', sans-serif;
+    }
+}
+
+/* Custom premium styles */
+.glassmorphism {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.dark .glassmorphism {
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Micro-animations */
+.hover-scale {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hover-scale:hover {
+    transform: scale(1.02);
+}
+
+.hover-lift {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease;
+}
+.hover-lift:hover {
+    transform: translateY(-4px);
+}
