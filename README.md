@@ -138,6 +138,33 @@ We have introduced a provider-agnostic, driver-based payment management system. 
 
 ---
 
+## Google Gemini AI Integration
+
+We have integrated the official Google Gemini REST APIs into the administrative dashboard. This enables automated copy generation, category recommendations, and real-time SEO optimization.
+
+### Key Capabilities
+- **Model Registry**: Dynamically fetches the latest content-generation models directly from Google's API endpoints.
+- **Copywriter Assistant**: Generates detailed, professional description text for product catalog listings based on item name, category, and brand.
+- **Auto Categorizer**: Classifies items and automatically selects the matching category based on name and descriptions.
+- **SEO Automator**: Generates optimized Meta Titles and Meta Descriptions in one click.
+
+### How to Access and Configure
+1. **Configure Gemini Settings**:
+   - Navigate to the Store Settings: `/admin/store-settings`.
+   - Scroll down to the **Google Gemini AI Integration** section.
+   - Enter your Gemini API Key (obtained from [Google AI Studio](https://aistudio.google.com/)).
+   - Click **Verify & Fetch Models** to verify the connection and retrieve available models.
+   - Select your preferred model from the **Active AI Model** select dropdown, and save store settings.
+2. **Generate Product Descriptions**:
+   - Go to `/admin/products/create` or edit an existing product.
+   - Type a product name and click the **Generate AI Description** sparkles button beside the *Product Name* field.
+3. **Suggest Categories**:
+   - Click **AI Suggest Category** sparkles button beside the *Category* selector to dynamically classify the product.
+4. **Generate SEO Metadata**:
+   - Click **Generate AI SEO** sparkles button beside the *Meta Title* input to populate both meta titles and descriptions automatically.
+
+---
+
 ## AI Roadmap
 
 The project aims to explore practical AI integrations within modern Laravel e-commerce applications. Planned AI-powered features include:
