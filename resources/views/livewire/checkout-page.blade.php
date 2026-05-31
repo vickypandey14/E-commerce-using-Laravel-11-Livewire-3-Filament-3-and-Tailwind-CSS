@@ -78,32 +78,41 @@
                 </div>
             </div>
 
+            @if (session()->has('warning'))
+                <div class="p-4 bg-yellow-50 dark:bg-yellow-950/20 text-yellow-700 dark:text-yellow-400 text-sm rounded-2xl border border-yellow-200/30 text-left mb-6">
+                    <i class="bi bi-exclamation-triangle-fill mr-2"></i> {{ session('warning') }}
+                </div>
+            @endif
+
             <!-- Payment Methods -->
             <div class="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/80 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6 text-left">
                 <h2 class="text-xl font-bold text-gray-800 dark:text-white pb-3 border-b border-gray-100 dark:border-slate-800/80">Payment Method</h2>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <!-- Cash on Delivery -->
-                    <label for="pay-cod" class="relative block bg-gray-50 dark:bg-slate-800/40 border border-gray-200 dark:border-slate-700 rounded-2xl p-5 cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800 transition select-none">
+                    @foreach($active_gateways as $gateway)
+                    <!-- {{ $gateway['name'] }} -->
+                    <label for="pay-{{ $gateway['code'] }}" class="relative block bg-gray-50 dark:bg-slate-800/40 border border-gray-200 dark:border-slate-700 rounded-2xl p-5 cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800 transition select-none">
                         <div class="flex items-center gap-3">
-                            <input type="radio" id="pay-cod" wire:model="payment_method" value="cod" class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                            <input type="radio" id="pay-{{ $gateway['code'] }}" wire:model="payment_method" value="{{ $gateway['code'] }}" class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
                             <div>
-                                <span class="block font-bold text-gray-800 dark:text-white text-sm">Cash on Delivery</span>
-                                <span class="block text-xs text-gray-400 mt-0.5">Pay with cash upon delivery.</span>
+                                <span class="block font-bold text-gray-800 dark:text-white text-sm">{{ $gateway['name'] }}</span>
+                                <span class="block text-xs text-gray-400 mt-0.5">
+                                    @if($gateway['code'] === 'cod')
+                                        Pay with cash upon delivery.
+                                    @elseif($gateway['code'] === 'stripe')
+                                        Pay securely via Credit/Debit card.
+                                    @elseif($gateway['code'] === 'razorpay')
+                                        UPI, Credit Cards & Wallets.
+                                    @elseif($gateway['code'] === 'paytm')
+                                        Simulated or Direct Paytm checkout.
+                                    @else
+                                        Secure payment driver.
+                                    @endif
+                                </span>
                             </div>
                         </div>
                     </label>
-
-                    <!-- Stripe -->
-                    <label for="pay-stripe" class="relative block bg-gray-50 dark:bg-slate-800/40 border border-gray-200 dark:border-slate-700 rounded-2xl p-5 cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800 transition select-none">
-                        <div class="flex items-center gap-3">
-                            <input type="radio" id="pay-stripe" wire:model="payment_method" value="stripe" class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
-                            <div>
-                                <span class="block font-bold text-gray-800 dark:text-white text-sm">Card Payment (Stripe)</span>
-                                <span class="block text-xs text-gray-400 mt-0.5">Pay securely via Credit/Debit card.</span>
-                            </div>
-                        </div>
-                    </label>
+                    @endforeach
                 </div>
                 @error('payment_method') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>

@@ -50,6 +50,17 @@ Route::get('/success', SuccessPage::class)->name('success');
 
 Route::get('/cancelled', CancelPage::class)->name('cancelled');
 
+// Payment Gateway System Routes
+Route::post('/payment/webhook/{gateway}', [App\Http\Controllers\PaymentController::class, 'webhook'])->name('payment.webhook');
+Route::get('/payment/callback/{gateway}', [App\Http\Controllers\PaymentController::class, 'callback'])->name('payment.callback');
+Route::post('/payment/callback/{gateway}', [App\Http\Controllers\PaymentController::class, 'callback']);
+Route::get('/payment/razorpay/checkout', [App\Http\Controllers\PaymentController::class, 'razorpayCheckout'])->name('payment.razorpay.checkout');
+Route::post('/payment/razorpay/verify', [App\Http\Controllers\PaymentController::class, 'razorpayVerify'])->name('payment.razorpay.verify');
+Route::get('/payment/paytm/simulated', [App\Http\Controllers\PaymentController::class, 'paytmSimulated'])->name('payment.paytm.simulated');
+Route::post('/payment/paytm/simulated/verify', [App\Http\Controllers\PaymentController::class, 'paytmSimulatedVerify'])->name('payment.paytm.simulated.verify');
+Route::get('/payment/cancel/{order_id}', [App\Http\Controllers\PaymentController::class, 'cancel'])->name('payment.cancel');
+
+
 Route::get('/admin/orders/{order}/invoice', function (App\Models\Order $order) {
     if (!auth()->check()) {
         abort(403, 'Unauthorized action.');
