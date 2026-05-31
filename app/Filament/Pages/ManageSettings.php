@@ -109,7 +109,7 @@ class ManageSettings extends Page
                                     ->label('Verify & Fetch Models')
                                     ->icon('heroicon-o-check-badge')
                                     ->color('success')
-                                    ->action(function ($state, Forms\Set $set) {
+                                    ->action(function ($state, \Filament\Forms\Set $set) {
                                         if (empty($state)) {
                                             Notification::make()
                                                 ->danger()
@@ -139,7 +139,7 @@ class ManageSettings extends Page
                                         }
                                     })
                             ),
-                        Forms\Components\Select::make('gemini_active_model')
+                        \Filament\Forms\Components\Select::make('gemini_active_model')
                             ->label('Active AI Model')
                             ->options(function () {
                                 $service = app(\App\Services\Ai\GeminiService::class);
