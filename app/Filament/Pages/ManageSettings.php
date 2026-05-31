@@ -105,7 +105,7 @@ class ManageSettings extends Page
                             ->password()
                             ->helperText('Get your API key from Google AI Studio.')
                             ->suffixAction(
-                                Forms\Components\Actions\Action::make('verifyGeminiKey')
+                                \Filament\Forms\Components\Actions\Action::make('verifyGeminiKey')
                                     ->label('Verify & Fetch Models')
                                     ->icon('heroicon-o-check-badge')
                                     ->color('success')
