@@ -6,7 +6,8 @@
 
 ### Admin Dashboard Preview
 
-![Admin Dashboard](public/screenshots/admin-dashboard.png)
+![Admin Dashboard](public/screenshots/admin-dashboard-1.png)
+![Store Upgrades & Settings](public/screenshots/admin-dashboard-2.png)
 
 ---
 
