@@ -51,7 +51,52 @@ class ProductResource extends Resource
                                     return;
                                 }
                                 $set('slug', Str::slug($state));
-                            }),
+                            })
+                            ->suffixAction(
+                                Forms\Components\Actions\Action::make('generateAIDescription')
+                                    ->label('Generate AI Description')
+                                    ->icon('heroicon-o-sparkles')
+                                    ->color('primary')
+                                    ->action(function (Forms\Get $get, Forms\Set $set, $state) {
+                                        if (empty($state)) {
+                                            \Filament\Notifications\Notification::make()
+                                                ->warning()
+                                                ->title('Product Name Required')
+                                                ->body('Please type a product name first before generating.')
+                                                ->send();
+                                            return;
+                                        }
+
+                                        $categoryId = $get('category_id');
+                                        $brandId = $get('brand_id');
+
+                                        $categoryName = $categoryId ? \App\Models\Category::find($categoryId)?->name : 'Electronics';
+                                        $brandName = $brandId ? \App\Models\Brand::find($brandId)?->name : null;
+
+                                        \Filament\Notifications\Notification::make()
+                                            ->info()
+                                            ->title('AI Copywriter Active')
+                                            ->body('Writing description with Gemini API...')
+                                            ->send();
+
+                                        $service = app(\App\Services\Ai\GeminiService::class);
+                                        $description = $service->generateProductDescription($state, $categoryName, $brandName);
+
+                                        if ($description) {
+                                            $set('description', $description);
+                                            \Filament\Notifications\Notification::make()
+                                                ->success()
+                                                ->title('Description Generated!')
+                                                ->send();
+                                        } else {
+                                            \Filament\Notifications\Notification::make()
+                                                ->danger()
+                                                ->title('AI Copywriter Failed')
+                                                ->body('Verify your Gemini API key in Store Settings.')
+                                                ->send();
+                                        }
+                                    })
+                            ),
 
                         TextInput::make('slug')
                             ->required()
@@ -89,7 +134,43 @@ class ProductResource extends Resource
                     Section::make('SEO Data')->schema([
                         
                         TextInput::make('meta_title')
-                            ->maxLength(255),
+                            ->maxLength(255)
+                            ->suffixAction(
+                                Forms\Components\Actions\Action::make('generateAISeo')
+                                    ->label('Generate AI SEO')
+                                    ->icon('heroicon-o-sparkles')
+                                    ->color('primary')
+                                    ->action(function (Forms\Get $get, Forms\Set $set) {
+                                        $name = $get('name');
+                                        $desc = $get('description') ?: $get('short_description') ?: '';
+
+                                        if (empty($name)) {
+                                            \Filament\Notifications\Notification::make()
+                                                ->warning()
+                                                ->title('Product Name Required')
+                                                ->body('Please type a product name first.')
+                                                ->send();
+                                            return;
+                                        }
+
+                                        \Filament\Notifications\Notification::make()
+                                            ->info()
+                                            ->title('SEO Optimizer Active')
+                                            ->body('Writing tags with Gemini API...')
+                                            ->send();
+
+                                        $service = app(\App\Services\Ai\GeminiService::class);
+                                        $seo = $service->generateSeoTags($name, strip_tags($desc));
+
+                                        $set('meta_title', $seo['meta_title']);
+                                        $set('meta_description', $seo['meta_description']);
+
+                                        \Filament\Notifications\Notification::make()
+                                            ->success()
+                                            ->title('SEO Tags Generated & Applied!')
+                                            ->send();
+                                    })
+                            ),
 
                         Textarea::make('meta_description')
                             ->autosize(),
@@ -115,7 +196,58 @@ class ProductResource extends Resource
                             ->required()
                             ->searchable()
                             ->preload()
-                            ->relationship('category', 'name'),
+                            ->relationship('category', 'name')
+                            ->suffixAction(
+                                Forms\Components\Actions\Action::make('suggestCategory')
+                                    ->label('AI Suggest Category')
+                                    ->icon('heroicon-o-sparkles')
+                                    ->color('primary')
+                                    ->action(function (Forms\Get $get, Forms\Set $set) {
+                                        $name = $get('name');
+                                        $desc = $get('description') ?: $get('short_description') ?: '';
+
+                                        if (empty($name)) {
+                                            \Filament\Notifications\Notification::make()
+                                                ->warning()
+                                                ->title('Product Name Required')
+                                                ->body('Please type a product name first.')
+                                                ->send();
+                                            return;
+                                        }
+
+                                        \Filament\Notifications\Notification::make()
+                                            ->info()
+                                            ->title('AI Categorizer Active')
+                                            ->body('Analyzing category with Gemini API...')
+                                            ->send();
+
+                                        $service = app(\App\Services\Ai\GeminiService::class);
+                                        $categoryName = $service->suggestCategory($name, strip_tags($desc));
+
+                                        if ($categoryName) {
+                                            $category = \App\Models\Category::where('name', 'like', "%{$categoryName}%")->first();
+                                            if ($category) {
+                                                $set('category_id', $category->id);
+                                                \Filament\Notifications\Notification::make()
+                                                    ->success()
+                                                    ->title("Categorized: {$category->name}")
+                                                    ->send();
+                                            } else {
+                                                \Filament\Notifications\Notification::make()
+                                                    ->warning()
+                                                    ->title('Category Not Mapped')
+                                                    ->body("AI suggested '{$categoryName}', but category was not found in database.")
+                                                    ->send();
+                                            }
+                                        } else {
+                                            \Filament\Notifications\Notification::make()
+                                                ->danger()
+                                                ->title('AI Categorizer Failed')
+                                                ->body('Verify your Gemini API key in Store Settings.')
+                                                ->send();
+                                        }
+                                    })
+                            ),
 
                         Select::make('brand_id')
                             ->required()
