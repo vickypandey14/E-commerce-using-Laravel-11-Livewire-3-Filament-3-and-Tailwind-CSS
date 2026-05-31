@@ -25,6 +25,7 @@ This repository showcases a **modern e-commerce application** built with the lat
 - **Dynamic UI**: The frontend is powered by Livewire 3, providing real-time, interactive user experiences.
 - **Powerful Admin Panel**: With Filament 3, managing the store's content, orders, and products is seamless.
 - **Responsive Design**: Tailwind CSS ensures the application looks great on all screen sizes.
+- **Enterprise Payment System**: Decoupled, driver-based payment manager supporting Stripe, Razorpay, Paytm, and Cash on Delivery with automatic fallback routing, webhook verification, dispute logs, and full/partial refund console.
 
 ---
 
@@ -88,9 +89,12 @@ Ensure you have the following installed:
 
 5. **Run migrations and seed the database:**
    ```bash
-   # Generates all ecommerce tables and populates them with sample users, products, categories, and orders
-   php artisan migrate:fresh --seed
-   ```
+    # Generates all ecommerce tables and populates them with sample users, products, categories, and orders
+    php artisan migrate:fresh --seed
+
+    # Seeds the active Stripe, Razorpay, Paytm, and COD gateways with default credentials
+    php artisan db:seed --class=PaymentGatewaySeeder
+    ```
 
 6. **Build frontend assets:**
    ```bash
@@ -118,6 +122,19 @@ The following pages have been developed using **Livewire 3**:
 8. **Order Details Page**: Provides detailed information about a specific order.
 9. **Products Page**: Displays all available products.
 10. **Product Details Page**: Shows information about a specific product.
+
+---
+
+## Enterprise Payment Architecture
+
+We have introduced a provider-agnostic, driver-based payment management system. All customer transactions are processed dynamically depending on configuration priorities and status flags configured in Filament.
+
+### Key Capabilities
+- **Gateway Manager**: Dynamically instantiates drivers based on active database setups.
+- **Automated Fallback**: Instantly re-routes checkouts to backup gateways if the primary provider returns API errors or is marked degraded.
+- **Audit Logs**: Records request/response transaction payloads under `Payment Settings > Transactions Log`.
+- **Refund Console**: Process full or partial refunds directly inside Filament which integrates with Stripe, Razorpay, and Paytm APIs.
+- **Sandbox Simulator**: Paytm simulator allows local storefront checkout testing without configuring active API keys.
 
 ---
 
