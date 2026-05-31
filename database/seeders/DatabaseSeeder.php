@@ -359,5 +359,7 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         }
+
+        $this->call(PaymentGatewaySeeder::class);
     }
 }
